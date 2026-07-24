@@ -5,10 +5,11 @@
   --muted: #5c6b7a;
   --accent: #0d6e6e;
   --accent-hover: #0a5757;
-  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
-  --border: color-mix(in srgb, var(--ink) 12%, transparent);
+  --accent-soft: color-mix(in srgb, var(--accent) 6%, transparent);
+  --border: color-mix(in srgb, var(--ink) 10%, transparent);
   --max: 68rem;
-  --nav-h: 3.5rem;
+  --prose: 38rem;
+  --nav-h: 3rem;
   --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   --font-body: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -29,7 +30,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--ink);
   background: var(--surface);
   -webkit-font-smoothing: antialiased;
@@ -76,8 +77,12 @@ a:hover {
   margin-inline: auto;
 }
 
+.prose {
+  max-width: var(--prose);
+}
+
 .section {
-  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  padding: clamp(3.25rem, 7vw, 5rem) 0;
 }
 
 .section--band {
@@ -85,26 +90,25 @@ a:hover {
 }
 
 .section__eyebrow {
-  margin: 0 0 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--muted);
 }
 
 .section__title {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.5rem;
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(1.5rem, 2.4vw, 1.75rem);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
 .section__lead {
   margin: 0 0 2rem;
-  max-width: 40rem;
+  max-width: var(--prose);
   color: var(--muted);
 }
 
@@ -113,12 +117,12 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.7rem 1.2rem;
+  padding: 0.65rem 1.1rem;
   font: inherit;
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  border-radius: 0.35rem;
+  border-radius: 0.3rem;
   border: 1px solid transparent;
   cursor: pointer;
   transition: background 160ms var(--ease), color 160ms var(--ease),
@@ -133,17 +137,6 @@ a:hover {
 .btn--primary:hover {
   background: var(--accent-hover);
   color: #fff;
-}
-
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--border);
-}
-
-.btn--ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .link-quiet {

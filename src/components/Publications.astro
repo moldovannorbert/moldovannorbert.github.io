@@ -10,10 +10,9 @@ const { publications } = Astro.props;
 
 <section class="section" id="publications" aria-labelledby="pubs-title">
   <div class="wrap">
-    <p class="section__eyebrow">Publications</p>
-    <h2 class="section__title" id="pubs-title">Selected findings</h2>
+    <h2 class="section__title" id="pubs-title">Publications</h2>
     <p class="section__lead">
-      Featured papers from liquid biopsy and fragmentomics work. Full record lives on Scholar, ORCID, and Scopus.
+      Selected papers; full list on Scholar, ORCID, and Scopus.
     </p>
 
     <ol class="pubs">
@@ -21,10 +20,10 @@ const { publications } = Astro.props;
         publications.featured.map((pub) => (
           <li class="pub">
             <p class="pub__meta">
-              {pub.venue} · {pub.year} · PMID {pub.pmid}
+              {pub.year} · {pub.venue} · PMID {pub.pmid}
             </p>
             <h3 class="pub__title">{pub.title.trim()}</h3>
-            <p class="pub__finding">{pub.finding.trim()}</p>
+            <p class="pub__finding prose">{pub.finding.trim()}</p>
             <p class="pub__links">
               <a href={pub.doi}>DOI</a>
               <a href={pub.pubmed}>PubMed</a>
@@ -54,7 +53,7 @@ const { publications } = Astro.props;
   }
 
   .pub {
-    padding: 1.35rem 0;
+    padding: 1.15rem 0;
     border-top: 1px solid var(--border);
   }
 
@@ -63,23 +62,23 @@ const { publications } = Astro.props;
   }
 
   .pub__meta {
-    margin: 0 0 0.35rem;
-    font-size: 0.88rem;
+    margin: 0 0 0.3rem;
+    font-size: 0.86rem;
     font-weight: 500;
     color: var(--muted);
   }
 
   .pub__title {
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.4rem;
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     line-height: 1.35;
     letter-spacing: -0.015em;
   }
 
   .pub__finding {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.65rem;
     color: var(--ink);
   }
 
@@ -101,7 +100,7 @@ const { publications } = Astro.props;
   }
 
   .indexes {
-    margin: 1.75rem 0 0;
+    margin: 1.5rem 0 0;
     color: var(--muted);
   }
 

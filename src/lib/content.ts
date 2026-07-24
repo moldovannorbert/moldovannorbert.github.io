@@ -83,6 +83,8 @@ export function buildCorpus() {
     works: works.map((w) => ({
       title: w.title,
       subtitle: w.subtitle,
+      year: w.year,
+      venueLabel: w.venueLabel,
       problem: w.problem.trim(),
       method: w.method.trim(),
       impact: w.impact.trim(),

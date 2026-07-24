@@ -8,12 +8,11 @@ interface Props {
 const { skills } = Astro.props;
 ---
 
-<section class="section section--band" id="expertise" aria-labelledby="expertise-title">
+<section class="section" id="expertise" aria-labelledby="expertise-title">
   <div class="wrap">
-    <p class="section__eyebrow">Expertise</p>
-    <h2 class="section__title" id="expertise-title">Domain pillars</h2>
+    <h2 class="section__title" id="expertise-title">Expertise</h2>
     <p class="section__lead">
-      Scannable cross-section of methods and stack for liquid biopsy and computational biology roles.
+      Liquid biopsy methods, ML for genomic data, and reproducible HPC pipelines.
     </p>
     <div class="pillars">
       {
@@ -35,14 +34,14 @@ const { skills } = Astro.props;
 <style>
   .pillars {
     display: grid;
-    gap: 2rem;
+    gap: 2rem 2.5rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .pillar__title {
-    margin: 0 0 0.85rem;
+    margin: 0 0 0.75rem;
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: -0.015em;
   }
@@ -54,27 +53,19 @@ const { skills } = Astro.props;
   }
 
   .pillar__list li {
-    position: relative;
-    padding: 0.45rem 0 0.45rem 1rem;
+    padding: 0.4rem 0;
     color: var(--muted);
-    border-top: 1px solid var(--border);
     font-size: 0.98rem;
   }
 
-  .pillar__list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.95rem;
-    width: 0.35rem;
-    height: 0.35rem;
-    border-radius: 50%;
-    background: var(--accent);
+  .pillar__list li + li {
+    border-top: none;
   }
 
   @media (max-width: 860px) {
     .pillars {
       grid-template-columns: 1fr;
+      gap: 1.75rem;
     }
   }
 </style>

@@ -1,6 +1,8 @@
 ---
 title: FrEIA
 subtitle: Fragment End Integrated Analysis
+year: 2024
+venueLabel: Cell Reports Medicine
 problem: >
   Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS
   needs robust end-sequence metrics to turn that biology into a detection signal.

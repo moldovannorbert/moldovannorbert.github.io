@@ -64,6 +64,8 @@ const experienceSchema = z.object({
 const workSchema = z.object({
   title: z.string().min(1),
   subtitle: z.string().min(1),
+  year: z.number().int(),
+  venueLabel: z.string().min(1),
   problem: z.string().min(1),
   method: z.string().min(1),
   impact: z.string().min(1),
@@ -144,6 +146,8 @@ const corpus = {
   works: works.map((w) => ({
     title: w.title,
     subtitle: w.subtitle,
+    year: w.year,
+    venueLabel: w.venueLabel,
     problem: w.problem.trim(),
     method: w.method.trim(),
     impact: w.impact.trim(),

@@ -107,6 +107,8 @@
     {
       "title": "FrEIA",
       "subtitle": "Fragment End Integrated Analysis",
+      "year": 2024,
+      "venueLabel": "Cell Reports Medicine",
       "problem": "Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS needs robust end-sequence metrics to turn that biology into a detection signal.",
       "method": "Snakemake pipeline extracting fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
       "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence (PMID 38128532).",
@@ -126,6 +128,8 @@
     {
       "title": "ITSFASTR",
       "subtitle": "Ultra-fast cfDNA analysis from ONT and Illumina",
+      "year": 2023,
+      "venueLabel": "EMBO Molecular Medicine",
       "problem": "Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge assumptions about tumor-derived fragment length in liquid biopsy.",
       "method": "End-to-end bioinformatics pipeline for real-time analysis of the cancer genome and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina sequencing data.",
       "impact": "Pipeline and study published in EMBO Molecular Medicine (PMID 37942753), demonstrating long-read fragmentomics for liquid biopsy.",
@@ -145,6 +149,8 @@
     {
       "title": "Ouro-tools",
       "subtitle": "Circular RNA from long-read liquid biopsies",
+      "year": 2023,
+      "venueLabel": "ZonMw grant",
       "problem": "Full-length circular RNA in liquid biopsies is hard to recover and quantify with short-read-centric workflows, limiting its use as a cancer biomarker.",
       "method": "Preprocessing and analysis pipeline for circular RNA from Oxford Nanopore sequencing of liquid biopsy material, developed under ZonMw funding for cervical cancer detection.",
       "impact": "ZonMw grant (2023): Full-length Circular RNA Detection in Liquid Biopsies for Cervical Cancer Detection. Companion tooling for ONT circRNA workflows.",

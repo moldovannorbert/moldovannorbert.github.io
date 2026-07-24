@@ -1,6 +1,8 @@
 ---
 title: ITSFASTR
 subtitle: Ultra-fast cfDNA analysis from ONT and Illumina
+year: 2023
+venueLabel: EMBO Molecular Medicine
 problem: >
   Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge
   assumptions about tumor-derived fragment length in liquid biopsy.

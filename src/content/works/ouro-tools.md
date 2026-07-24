@@ -1,6 +1,8 @@
 ---
 title: Ouro-tools
 subtitle: Circular RNA from long-read liquid biopsies
+year: 2023
+venueLabel: ZonMw grant
 problem: >
   Full-length circular RNA in liquid biopsies is hard to recover and quantify
   with short-read-centric workflows, limiting its use as a cancer biomarker.

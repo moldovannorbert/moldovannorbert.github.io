@@ -9,38 +9,10 @@ const { bio } = Astro.props;
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-name">
-  <div class="hero__bg" aria-hidden="true">
-    <svg class="hero__motif" viewBox="0 0 1200 480" preserveAspectRatio="none">
-      {
-        Array.from({ length: 28 }, (_, i) => {
-          const x = 20 + i * 42;
-          const h = 40 + ((i * 37) % 160);
-          const y = 320 - h;
-          const opacity = 0.08 + ((i % 5) * 0.03);
-          return (
-            <rect
-              x={x}
-              y={y}
-              width="18"
-              height={h}
-              rx="2"
-              fill="currentColor"
-              opacity={opacity}
-            />
-          );
-        })
-      }
-      <path
-        d="M0 360 C 200 300, 400 400, 600 340 S 1000 280, 1200 330 L1200 480 L0 480 Z"
-        fill="currentColor"
-        opacity="0.04"
-      />
-    </svg>
-  </div>
   <div class="wrap hero__content">
-    <p class="hero__title-line">{bio.title} · {bio.tagline}</p>
     <h1 id="hero-name" class="hero__name">{bio.name}</h1>
-    <p class="hero__pitch">{bio.pitch.trim()}</p>
+    <p class="hero__title-line">{bio.title} · {bio.tagline}</p>
+    <p class="hero__pitch prose">{bio.pitch.trim()}</p>
     <div class="hero__cta">
       <a class="btn btn--primary" href={bio.cv.primary.href} download>
         {bio.cv.primary.label}
@@ -66,59 +38,44 @@ const { bio } = Astro.props;
 <style>
   .hero {
     position: relative;
-    overflow: hidden;
     min-height: calc(100svh - var(--nav-h));
     display: flex;
     align-items: center;
-    padding: clamp(3rem, 10vw, 6rem) 0;
+    padding: clamp(3rem, 10vw, 5.5rem) 0;
     background:
-      radial-gradient(1200px 500px at 80% 10%, var(--accent-soft), transparent 60%),
-      linear-gradient(165deg, #f3f6f8 0%, var(--surface) 45%, #e8eef1 100%);
-  }
-
-  .hero__bg {
-    position: absolute;
-    inset: 0;
-    color: var(--accent);
-    pointer-events: none;
-  }
-
-  .hero__motif {
-    width: 100%;
-    height: 100%;
+      radial-gradient(900px 420px at 85% 0%, var(--accent-soft), transparent 70%),
+      var(--surface);
   }
 
   .hero__content {
     position: relative;
     z-index: 1;
-    max-width: 42rem;
-  }
-
-  .hero__title-line {
-    margin: 0 0 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--muted);
-    animation: rise 700ms var(--ease) both;
   }
 
   .hero__name {
-    margin: 0 0 1rem;
+    margin: 0 0 0.65rem;
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 8vw, 4.25rem);
+    font-size: clamp(3rem, 9vw, 5rem);
     font-weight: 700;
-    line-height: 1.05;
+    line-height: 1.02;
     letter-spacing: -0.03em;
     color: var(--ink);
-    animation: rise 700ms var(--ease) 80ms both;
+    animation: rise 700ms var(--ease) both;
+  }
+
+  .hero__title-line {
+    margin: 0 0 1.1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+    animation: rise 700ms var(--ease) 60ms both;
   }
 
   .hero__pitch {
     margin: 0 0 1.75rem;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     color: var(--muted);
-    max-width: 36rem;
-    animation: rise 700ms var(--ease) 140ms both;
+    animation: rise 700ms var(--ease) 120ms both;
   }
 
   .hero__cta {
@@ -127,7 +84,7 @@ const { bio } = Astro.props;
     align-items: center;
     gap: 1rem 1.25rem;
     margin-bottom: 1.5rem;
-    animation: rise 700ms var(--ease) 200ms both;
+    animation: rise 700ms var(--ease) 180ms both;
   }
 
   .hero__cv-alt {
@@ -141,7 +98,7 @@ const { bio } = Astro.props;
     margin: 0;
     padding: 0;
     list-style: none;
-    animation: rise 700ms var(--ease) 260ms both;
+    animation: rise 700ms var(--ease) 240ms both;
   }
 
   .hero__links a {

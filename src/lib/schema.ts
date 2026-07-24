@@ -72,6 +72,8 @@ export const workLinksSchema = z
 export const workSchema = z.object({
   title: z.string().min(1),
   subtitle: z.string().min(1),
+  year: z.number().int(),
+  venueLabel: z.string().min(1),
   problem: z.string().min(1),
   method: z.string().min(1),
   impact: z.string().min(1),
