@@ -1,0 +1,168 @@
+---
+import type { Work } from '../lib/schema';
+
+interface Props {
+  works: Work[];
+}
+
+const { works } = Astro.props;
+---
+
+<section class="section section--band" id="work" aria-labelledby="work-title">
+  <div class="wrap">
+    <p class="section__eyebrow">Featured work</p>
+    <h2 class="section__title" id="work-title">Science and software, same case study</h2>
+    <p class="section__lead">
+      Three high-signal projects where the biological question and the shipped pipeline travel together.
+    </p>
+
+    <div class="works">
+      {
+        works.map((work) => (
+          <article class="work">
+            <header class="work__head">
+              <h3 class="work__title">{work.title}</h3>
+              <p class="work__subtitle">{work.subtitle}</p>
+            </header>
+            <dl class="work__grid">
+              <div>
+                <dt>Problem</dt>
+                <dd>{work.problem.trim()}</dd>
+              </div>
+              <div>
+                <dt>Method</dt>
+                <dd>{work.method.trim()}</dd>
+              </div>
+              <div>
+                <dt>Impact</dt>
+                <dd>{work.impact.trim()}</dd>
+              </div>
+            </dl>
+            <ul class="work__tags">
+              {work.tags.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+            <p class="work__links">
+              {work.links.repo && (
+                <a class="work__link" href={work.links.repo}>
+                  Repository
+                </a>
+              )}
+              {work.links.pubmed && (
+                <a class="work__link" href={work.links.pubmed}>
+                  PubMed
+                </a>
+              )}
+              {work.links.doi && (
+                <a class="work__link" href={work.links.doi}>
+                  DOI
+                </a>
+              )}
+              {work.links.docs && (
+                <a class="work__link" href={work.links.docs}>
+                  Docs
+                </a>
+              )}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .works {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .work {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .work:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .work__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .work__subtitle {
+    margin: 0.2rem 0 1rem;
+    color: var(--muted);
+  }
+
+  .work__grid {
+    display: grid;
+    gap: 1rem;
+    margin: 0 0 1rem;
+  }
+
+  .work__grid dt {
+    margin: 0 0 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .work__grid dd {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .work__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    margin: 0 0 0.85rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .work__tags li {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .work__tags li:not(:last-child)::after {
+    content: '·';
+    margin-left: 0.75rem;
+    color: var(--border);
+  }
+
+  .work__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin: 0;
+  }
+
+  .work__link {
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  }
+
+  .work__link:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  @media (min-width: 800px) {
+    .work__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+</style>

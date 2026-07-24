@@ -1,0 +1,50 @@
+roles:
+  - title: Bioinformatician
+    org: Erasmus University Medical Center
+    dept: Department of Molecular Oncology
+    location: Rotterdam, NL
+    start: "2024-08"
+    end: "2025-07"
+    summary: >
+      Built scalable cfDNA fragmentomics and multi-omics pipelines for MRD
+      detection in cancer; maintained HPC workflows for high-throughput
+      sequencing.
+  - title: Bioinformatician
+    org: Amsterdam University Medical Center
+    dept: Cancer Center Amsterdam, Department of Pathology
+    location: Amsterdam, NL
+    start: "2020-08"
+    end: "2024-07"
+    summary: >
+      Led cfDNA fragment-end analysis, developed machine learning models for
+      liquid biopsy, and built tools for circRNA detection from liquid biopsies.
+  - title: Bioinformatician (affiliation)
+    org: University of Manchester
+    location: Manchester, UK
+    start: "2023-11"
+    end: "2024-08"
+    summary: Research affiliation in liquid biopsy bioinformatics.
+  - title: Bioinformatics consultant
+    org: Griffsoft Zrt.
+    location: Szeged, HU
+    start: "2019-09"
+    end: "2021-08"
+    summary: >
+      Advised a non-bioinformatics team on software for a commercial
+      metagenomic sequencing analysis tool.
+education:
+  - degree: PhD in Medical Genetics
+    org: University of Szeged, Faculty of General Medicine
+    location: Szeged, HU
+    start: "2016"
+    end: "2020"
+  - degree: M.Sc. in Biology
+    org: Babeș-Bolyai University
+    location: Cluj-Napoca, RO
+    start: "2010"
+    end: "2012"
+  - degree: B.Sc. in Biology
+    org: Babeș-Bolyai University
+    location: Cluj-Napoca, RO
+    start: "2007"
+    end: "2010"

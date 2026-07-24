@@ -1,0 +1,171 @@
+---
+import type { Bio } from '../lib/schema';
+
+interface Props {
+  bio: Bio;
+}
+
+const { bio } = Astro.props;
+---
+
+<section class="hero" id="top" aria-labelledby="hero-name">
+  <div class="hero__bg" aria-hidden="true">
+    <svg class="hero__motif" viewBox="0 0 1200 480" preserveAspectRatio="none">
+      {
+        Array.from({ length: 28 }, (_, i) => {
+          const x = 20 + i * 42;
+          const h = 40 + ((i * 37) % 160);
+          const y = 320 - h;
+          const opacity = 0.08 + ((i % 5) * 0.03);
+          return (
+            <rect
+              x={x}
+              y={y}
+              width="18"
+              height={h}
+              rx="2"
+              fill="currentColor"
+              opacity={opacity}
+            />
+          );
+        })
+      }
+      <path
+        d="M0 360 C 200 300, 400 400, 600 340 S 1000 280, 1200 330 L1200 480 L0 480 Z"
+        fill="currentColor"
+        opacity="0.04"
+      />
+    </svg>
+  </div>
+  <div class="wrap hero__content">
+    <p class="hero__title-line">{bio.title} · {bio.tagline}</p>
+    <h1 id="hero-name" class="hero__name">{bio.name}</h1>
+    <p class="hero__pitch">{bio.pitch.trim()}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href={bio.cv.primary.href} download>
+        {bio.cv.primary.label}
+      </a>
+      {
+        bio.cv.secondary && (
+          <a class="link-quiet hero__cv-alt" href={bio.cv.secondary.href} download>
+            {bio.cv.secondary.label}
+          </a>
+        )
+      }
+    </div>
+    <ul class="hero__links">
+      <li><a href={bio.links.github}>GitHub</a></li>
+      <li><a href={bio.links.scholar}>Google Scholar</a></li>
+      <li><a href={bio.links.linkedin}>LinkedIn</a></li>
+      <li><a href={bio.links.orcid}>ORCID</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100svh - var(--nav-h));
+    display: flex;
+    align-items: center;
+    padding: clamp(3rem, 10vw, 6rem) 0;
+    background:
+      radial-gradient(1200px 500px at 80% 10%, var(--accent-soft), transparent 60%),
+      linear-gradient(165deg, #f3f6f8 0%, var(--surface) 45%, #e8eef1 100%);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    color: var(--accent);
+    pointer-events: none;
+  }
+
+  .hero__motif {
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 42rem;
+  }
+
+  .hero__title-line {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+    animation: rise 700ms var(--ease) both;
+  }
+
+  .hero__name {
+    margin: 0 0 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 8vw, 4.25rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    animation: rise 700ms var(--ease) 80ms both;
+  }
+
+  .hero__pitch {
+    margin: 0 0 1.75rem;
+    font-size: 1.125rem;
+    color: var(--muted);
+    max-width: 36rem;
+    animation: rise 700ms var(--ease) 140ms both;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    animation: rise 700ms var(--ease) 200ms both;
+  }
+
+  .hero__cv-alt {
+    font-size: 0.95rem;
+  }
+
+  .hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: rise 700ms var(--ease) 260ms both;
+  }
+
+  .hero__links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 160ms var(--ease), color 160ms var(--ease);
+  }
+
+  .hero__links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import type { Skills } from '../lib/schema';
+
+interface Props {
+  skills: Skills;
+}
+
+const { skills } = Astro.props;
+---
+
+<section class="section section--band" id="expertise" aria-labelledby="expertise-title">
+  <div class="wrap">
+    <p class="section__eyebrow">Expertise</p>
+    <h2 class="section__title" id="expertise-title">Domain pillars</h2>
+    <p class="section__lead">
+      Scannable cross-section of methods and stack for liquid biopsy and computational biology roles.
+    </p>
+    <div class="pillars">
+      {
+        skills.pillars.map((pillar) => (
+          <div class="pillar">
+            <h3 class="pillar__title">{pillar.title}</h3>
+            <ul class="pillar__list">
+              {pillar.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pillars {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pillar__title {
+    margin: 0 0 0.85rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .pillar__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pillar__list li {
+    position: relative;
+    padding: 0.45rem 0 0.45rem 1rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    font-size: 0.98rem;
+  }
+
+  .pillar__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .pillars {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

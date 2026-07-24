@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "generatedFor": "portfolio-chat-rag",
+  "person": {
+    "name": "Norbert Moldován",
+    "title": "Senior Bioinformatician",
+    "tagline": "Liquid biopsy · cfDNA fragmentomics · machine learning",
+    "pitch": "I build computational pipelines and predictive models for circulating nucleic acids—combining multi-omics, fragmentomics, and deep learning to surface biomarkers for cancer detection and monitoring.",
+    "location": "Amsterdam, NL",
+    "email": "n.moldovan@pm.me",
+    "links": {
+      "github": "https://github.com/moldovannorbert",
+      "scholar": "https://scholar.google.com/citations?user=mMrx75QAAAAJ",
+      "linkedin": "https://www.linkedin.com/in/norbert-moldovan/",
+      "orcid": "https://orcid.org/0000-0003-4138-586X"
+    }
+  },
+  "skills": [
+    {
+      "title": "Liquid biopsy & multi-omics",
+      "items": [
+        "cfDNA fragmentomics and end-sequence analysis for cancer detection and MRD",
+        "Short- and long-read sequencing (Illumina, Oxford Nanopore, PacBio)",
+        "DNA and RNA workflows including circRNA from liquid biopsies",
+        "Multi-omics integration for biomarker discovery"
+      ]
+    },
+    {
+      "title": "ML for genomic data",
+      "items": [
+        "Deep learning and predictive models for liquid biopsy analysis (PyTorch, scikit-learn)",
+        "Embeddings, transformers, and diffusion models for sequence and cfDNA data",
+        "High-dimensional unstructured genomic and transcriptomic data",
+        "Hyperparameter optimization with Optuna"
+      ]
+    },
+    {
+      "title": "Pipelines & HPC",
+      "items": [
+        "Python, R, and Bash for production bioinformatics tooling",
+        "Snakemake and Mamba/Conda for scalable, reproducible pipelines",
+        "Slurm HPC workflows, multi-threading, and GPU acceleration",
+        "FAIR data practices for sequencing analysis"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Bioinformatician",
+      "org": "Erasmus University Medical Center",
+      "dept": "Department of Molecular Oncology",
+      "location": "Rotterdam, NL",
+      "start": "2024-08",
+      "end": "2025-07",
+      "summary": "Built scalable cfDNA fragmentomics and multi-omics pipelines for MRD detection in cancer; maintained HPC workflows for high-throughput sequencing."
+    },
+    {
+      "title": "Bioinformatician",
+      "org": "Amsterdam University Medical Center",
+      "dept": "Cancer Center Amsterdam, Department of Pathology",
+      "location": "Amsterdam, NL",
+      "start": "2020-08",
+      "end": "2024-07",
+      "summary": "Led cfDNA fragment-end analysis, developed machine learning models for liquid biopsy, and built tools for circRNA detection from liquid biopsies."
+    },
+    {
+      "title": "Bioinformatician (affiliation)",
+      "org": "University of Manchester",
+      "location": "Manchester, UK",
+      "start": "2023-11",
+      "end": "2024-08",
+      "summary": "Research affiliation in liquid biopsy bioinformatics."
+    },
+    {
+      "title": "Bioinformatics consultant",
+      "org": "Griffsoft Zrt.",
+      "location": "Szeged, HU",
+      "start": "2019-09",
+      "end": "2021-08",
+      "summary": "Advised a non-bioinformatics team on software for a commercial metagenomic sequencing analysis tool."
+    }
+  ],
+  "education": [
+    {
+      "degree": "PhD in Medical Genetics",
+      "org": "University of Szeged, Faculty of General Medicine",
+      "location": "Szeged, HU",
+      "start": "2016",
+      "end": "2020"
+    },
+    {
+      "degree": "M.Sc. in Biology",
+      "org": "Babeș-Bolyai University",
+      "location": "Cluj-Napoca, RO",
+      "start": "2010",
+      "end": "2012"
+    },
+    {
+      "degree": "B.Sc. in Biology",
+      "org": "Babeș-Bolyai University",
+      "location": "Cluj-Napoca, RO",
+      "start": "2007",
+      "end": "2010"
+    }
+  ],
+  "works": [
+    {
+      "title": "FrEIA",
+      "subtitle": "Fragment End Integrated Analysis",
+      "problem": "Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS needs robust end-sequence metrics to turn that biology into a detection signal.",
+      "method": "Snakemake pipeline extracting fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
+      "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence (PMID 38128532).",
+      "tags": [
+        "cfDNA",
+        "fragmentomics",
+        "Snakemake",
+        "Python",
+        "liquid biopsy"
+      ],
+      "links": {
+        "repo": "https://github.com/mouliere-lab/FrEIA",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38128532/",
+        "doi": "https://doi.org/10.1016/j.xcrm.2023.101349"
+      }
+    },
+    {
+      "title": "ITSFASTR",
+      "subtitle": "Ultra-fast cfDNA analysis from ONT and Illumina",
+      "problem": "Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge assumptions about tumor-derived fragment length in liquid biopsy.",
+      "method": "End-to-end bioinformatics pipeline for real-time analysis of the cancer genome and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina sequencing data.",
+      "impact": "Pipeline and study published in EMBO Molecular Medicine (PMID 37942753), demonstrating long-read fragmentomics for liquid biopsy.",
+      "tags": [
+        "cfDNA",
+        "nanopore",
+        "Illumina",
+        "fragmentomics",
+        "pipeline"
+      ],
+      "links": {
+        "repo": "https://github.com/mouliere-lab/ITSFASTR",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37942753/",
+        "doi": "https://doi.org/10.15252/emmm.202217282"
+      }
+    },
+    {
+      "title": "Ouro-tools",
+      "subtitle": "Circular RNA from long-read liquid biopsies",
+      "problem": "Full-length circular RNA in liquid biopsies is hard to recover and quantify with short-read-centric workflows, limiting its use as a cancer biomarker.",
+      "method": "Preprocessing and analysis pipeline for circular RNA from Oxford Nanopore sequencing of liquid biopsy material, developed under ZonMw funding for cervical cancer detection.",
+      "impact": "ZonMw grant (2023): Full-length Circular RNA Detection in Liquid Biopsies for Cervical Cancer Detection. Companion tooling for ONT circRNA workflows.",
+      "tags": [
+        "circRNA",
+        "nanopore",
+        "liquid biopsy",
+        "RNA",
+        "pipeline"
+      ],
+      "links": {}
+    }
+  ],
+  "publications": {
+    "featured": [
+      {
+        "pmid": "38128532",
+        "title": "Multi-modal cell-free DNA genomic and fragmentomic patterns enhance cancer survival and recurrence analysis",
+        "venue": "Cell Reports Medicine",
+        "year": 2024,
+        "finding": "FrEIA-style multi-modal cfDNA features improve cancer survival and recurrence analysis from liquid biopsy sequencing.",
+        "doi": "https://doi.org/10.1016/j.xcrm.2023.101349",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38128532/",
+        "code": "https://github.com/mouliere-lab/FrEIA"
+      },
+      {
+        "pmid": "37942753",
+        "title": "Real-time analysis of the cancer genome and fragmentome from plasma and urine cell-free DNA using nanopore sequencing",
+        "venue": "EMBO Molecular Medicine",
+        "year": 2023,
+        "finding": "Long cfDNA fragments from ONT sequencing reshape fragmentome interpretation in plasma and urine liquid biopsies.",
+        "doi": "https://doi.org/10.15252/emmm.202217282",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37942753/",
+        "code": "https://github.com/mouliere-lab/ITSFASTR"
+      },
+      {
+        "pmid": "39262778",
+        "title": "Comparison of cell-free and small extracellular-vesicle-associated DNA by sequencing plasma of lung cancer patients",
+        "venue": "iScience",
+        "year": 2024,
+        "finding": "EV fractions in plasma are not enriched in tumor-derived DNA relative to cell-free DNA, informing liquid biopsy strategy.",
+        "doi": "https://doi.org/10.1016/j.isci.2024.110742",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39262778/"
+      }
+    ],
+    "indexes": {
+      "scholar": "https://scholar.google.com/citations?user=mMrx75QAAAAJ",
+      "orcid": "https://orcid.org/0000-0003-4138-586X",
+      "scopus": "https://www.scopus.com/authid/detail.uri?authorId=57193274084"
+    }
+  }
+}

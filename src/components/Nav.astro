@@ -1,0 +1,190 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+
+const links = [
+  { href: '#expertise', label: 'Expertise' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#work', label: 'Work' },
+  { href: '#publications', label: 'Publications' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a class="nav__brand" href="#top">{name}</a>
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-nav-toggle
+    >
+      Menu
+    </button>
+    <nav id="site-nav" class="nav__links" aria-label="Primary" data-nav-panel>
+      {
+        links.map((l) => (
+          <a class="nav__link" href={l.href} data-nav-link>
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--nav-h);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+    gap: 1rem;
+  }
+
+  .nav__brand {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav__brand:hover {
+    color: var(--accent);
+  }
+
+  .nav__toggle {
+    display: none;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.35rem 0.6rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 0.3rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .nav__link {
+    position: relative;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .nav__link:hover,
+  .nav__link.is-active {
+    color: var(--ink);
+  }
+
+  .nav__link.is-active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.35rem;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .nav__toggle {
+      display: inline-flex;
+    }
+
+    .nav__links {
+      display: none;
+      position: absolute;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem 1rem 1rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__links.is-open {
+      display: flex;
+    }
+
+    .nav__link {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__link.is-active::after {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-nav]');
+  if (root) {
+    const toggle = root.querySelector('[data-nav-toggle]');
+    const panel = root.querySelector('[data-nav-panel]');
+    const links = [...root.querySelectorAll('[data-nav-link]')];
+
+    toggle?.addEventListener('click', () => {
+      const open = panel?.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        panel?.classList.remove('is-open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const sections = links
+      .map((a) => {
+        const id = a.getAttribute('href')?.slice(1);
+        return id ? document.getElementById(id) : null;
+      })
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const id = entry.target.id;
+          links.forEach((a) => {
+            a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`);
+          });
+        });
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0 },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+  }
+</script>

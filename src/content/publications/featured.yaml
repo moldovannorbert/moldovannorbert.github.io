@@ -1,0 +1,40 @@
+featured:
+  - pmid: "38128532"
+    title: >
+      Multi-modal cell-free DNA genomic and fragmentomic patterns enhance cancer
+      survival and recurrence analysis
+    venue: Cell Reports Medicine
+    year: 2024
+    finding: >
+      FrEIA-style multi-modal cfDNA features improve cancer survival and
+      recurrence analysis from liquid biopsy sequencing.
+    doi: https://doi.org/10.1016/j.xcrm.2023.101349
+    pubmed: https://pubmed.ncbi.nlm.nih.gov/38128532/
+    code: https://github.com/mouliere-lab/FrEIA
+  - pmid: "37942753"
+    title: >
+      Real-time analysis of the cancer genome and fragmentome from plasma and
+      urine cell-free DNA using nanopore sequencing
+    venue: EMBO Molecular Medicine
+    year: 2023
+    finding: >
+      Long cfDNA fragments from ONT sequencing reshape fragmentome interpretation
+      in plasma and urine liquid biopsies.
+    doi: https://doi.org/10.15252/emmm.202217282
+    pubmed: https://pubmed.ncbi.nlm.nih.gov/37942753/
+    code: https://github.com/mouliere-lab/ITSFASTR
+  - pmid: "39262778"
+    title: >
+      Comparison of cell-free and small extracellular-vesicle-associated DNA by
+      sequencing plasma of lung cancer patients
+    venue: iScience
+    year: 2024
+    finding: >
+      EV fractions in plasma are not enriched in tumor-derived DNA relative to
+      cell-free DNA, informing liquid biopsy strategy.
+    doi: https://doi.org/10.1016/j.isci.2024.110742
+    pubmed: https://pubmed.ncbi.nlm.nih.gov/39262778/
+indexes:
+  scholar: https://scholar.google.com/citations?user=mMrx75QAAAAJ
+  orcid: https://orcid.org/0000-0003-4138-586X
+  scopus: https://www.scopus.com/authid/detail.uri?authorId=57193274084

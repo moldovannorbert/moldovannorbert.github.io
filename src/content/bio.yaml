@@ -1,0 +1,21 @@
+name: Norbert Moldován
+title: Senior Bioinformatician
+tagline: Liquid biopsy · cfDNA fragmentomics · machine learning
+pitch: >
+  I build computational pipelines and predictive models for circulating nucleic
+  acids—combining multi-omics, fragmentomics, and deep learning to surface
+  biomarkers for cancer detection and monitoring.
+location: Amsterdam, NL
+email: n.moldovan@pm.me
+links:
+  github: https://github.com/moldovannorbert
+  scholar: https://scholar.google.com/citations?user=mMrx75QAAAAJ
+  linkedin: https://www.linkedin.com/in/norbert-moldovan/
+  orcid: https://orcid.org/0000-0003-4138-586X
+cv:
+  primary:
+    label: Download CV
+    href: /cv-bioinformatician.pdf
+  secondary:
+    label: Data science CV
+    href: /cv-data-scientist.pdf

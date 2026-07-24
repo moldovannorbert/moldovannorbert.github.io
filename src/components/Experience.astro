@@ -1,0 +1,155 @@
+---
+import type { Experience } from '../lib/schema';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+
+function formatRange(start: string, end: string) {
+  const fmt = (s: string) => {
+    if (/^\d{4}-\d{2}$/.test(s)) {
+      const [y, m] = s.split('-');
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${months[Number(m) - 1]} ${y}`;
+    }
+    return s;
+  };
+  return `${fmt(start)} – ${fmt(end)}`;
+}
+---
+
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="wrap">
+    <p class="section__eyebrow">Path</p>
+    <h2 class="section__title" id="experience-title">Experience & education</h2>
+    <p class="section__lead">
+      Research appointments and training focused on liquid biopsy and computational biology.
+    </p>
+
+    <ol class="timeline">
+      {
+        experience.roles.map((role) => (
+          <li class="timeline__item">
+            <div class="timeline__meta">{formatRange(role.start, role.end)}</div>
+            <div class="timeline__body">
+              <h3 class="timeline__title">
+                {role.title}
+                <span class="timeline__org"> · {role.org}</span>
+              </h3>
+              {(role.dept || role.location) && (
+                <p class="timeline__place">
+                  {[role.dept, role.location].filter(Boolean).join(' · ')}
+                </p>
+              )}
+              <p class="timeline__summary">{role.summary.trim()}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <h3 class="edu-heading">Education</h3>
+    <ul class="edu">
+      {
+        experience.education.map((ed) => (
+          <li class="edu__item">
+            <span class="edu__degree">{ed.degree}</span>
+            <span class="edu__org">
+              {ed.org} · {ed.location} · {ed.start}–{ed.end}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timeline__item {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .timeline__item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline__meta {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .timeline__title {
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .timeline__org {
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .timeline__place {
+    margin: 0 0 0.5rem;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .timeline__summary {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .edu-heading {
+    margin: 2.5rem 0 1rem;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+  }
+
+  .edu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .edu__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .edu__item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu__degree {
+    font-weight: 600;
+  }
+
+  .edu__org {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .timeline__item {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>
