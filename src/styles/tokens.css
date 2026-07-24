@@ -10,8 +10,14 @@
   --max: 68rem;
   --prose: 38rem;
   --nav-h: 3rem;
+  --tech-longread-rna: #0b9b8a;
+  --tech-fragmentomics: #1d4e89;
+  --tech-genomics: #b44d6a;
+  --tech-longread-cfdna: #8a5a2b;
+  --tech-other: #7a8490;
   --font-display: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   --font-body: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 

@@ -11,7 +11,7 @@ function formatRange(start: string, end: string) {
   const fmt = (s: string) => {
     if (/^\d{4}-\d{2}$/.test(s)) {
       const [y, m] = s.split('-');
-      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       return `${months[Number(m) - 1]} ${y}`;
     }
     return s;
@@ -27,128 +27,301 @@ function formatRange(start: string, end: string) {
       Research appointments in liquid biopsy and computational biology.
     </p>
 
-    <ol class="timeline">
+    <ol class="rail" data-rail>
       {
         experience.roles.map((role) => (
-          <li class="timeline__item">
-            <div class="timeline__meta">{formatRange(role.start, role.end)}</div>
-            <div class="timeline__body">
-              <h3 class="timeline__title">
+          <li class="rail__item" data-rail-item>
+            <div class="rail__date">{formatRange(role.start, role.end)}</div>
+            <div class="rail__node" aria-hidden="true" />
+            <article class="rail__card">
+              <h3 class="rail__title">
                 {role.title}
-                <span class="timeline__org"> · {role.org}</span>
+                <span class="rail__org">
+                  {' '}
+                  ·{' '}
+                  <a class="rail__org-link" href={role.url} target="_blank" rel="noopener noreferrer">
+                    {role.org}
+                  </a>
+                </span>
               </h3>
               {(role.dept || role.location) && (
-                <p class="timeline__place">
+                <p class="rail__place">
                   {[role.dept, role.location].filter(Boolean).join(' · ')}
                 </p>
               )}
-              <p class="timeline__summary prose">{role.summary.trim()}</p>
+              <p class="rail__summary">{role.summary.trim()}</p>
+            </article>
+          </li>
+        ))
+      }
+
+      <li class="rail__break" aria-hidden="true">
+        <div class="rail__date"></div>
+        <div class="rail__node rail__node--label">
+          <span class="rail__edu-tag">Education</span>
+        </div>
+        <div></div>
+      </li>
+
+      {
+        experience.education.map((ed) => (
+          <li class="rail__item" data-rail-item>
+            <div class="rail__date">
+              {ed.start}–{ed.end}
             </div>
+            <div class="rail__node" aria-hidden="true" />
+            <article class="rail__card">
+              <h3 class="rail__title">{ed.degree}</h3>
+              <p class="rail__place">
+                <a class="rail__org-link" href={ed.url} target="_blank" rel="noopener noreferrer">
+                  {ed.org}
+                </a>
+                {' '}
+                · {ed.location}
+              </p>
+            </article>
           </li>
         ))
       }
     </ol>
-
-    <h3 class="edu-heading">Education</h3>
-    <ul class="edu">
-      {
-        experience.education.map((ed) => (
-          <li class="edu__item">
-            <span class="edu__degree">{ed.degree}</span>
-            <span class="edu__org">
-              {ed.org} · {ed.location} · {ed.start}–{ed.end}
-            </span>
-          </li>
-        ))
-      }
-    </ul>
   </div>
 </section>
 
 <style>
-  .timeline {
+  .rail {
+    --rail-date: 8.75rem;
+    --rail-gap: 1.15rem;
+    --rail-node: 0.7rem;
+    position: relative;
     margin: 0;
-    padding: 0;
+    padding: 0.35rem 0 0.5rem;
     list-style: none;
   }
 
-  .timeline__item {
+  .rail::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--rail-date) + var(--rail-gap) + var(--rail-node) / 2);
+    z-index: 0;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+
+  .rail__item,
+  .rail__break {
+    position: relative;
     display: grid;
-    grid-template-columns: 9.5rem 1fr;
-    gap: 1.25rem;
-    padding: 1.15rem 0;
-    border-top: 1px solid var(--border);
+    grid-template-columns: var(--rail-date) var(--rail-node) minmax(0, 1fr);
+    grid-template-areas: 'date node card';
+    column-gap: var(--rail-gap);
+    align-items: start;
   }
 
-  .timeline__item:last-child {
-    border-bottom: 1px solid var(--border);
+  .rail__item {
+    padding: 0.85rem 0;
   }
 
-  .timeline__meta {
-    font-size: 0.88rem;
+  .rail__break {
+    padding: 1.35rem 0 0.65rem;
+    grid-template-areas: 'date node card';
+  }
+
+  .rail__date {
+    grid-area: date;
+    padding-top: 0.95rem;
+    font-size: 0.84rem;
     font-weight: 500;
+    line-height: 1.35;
+    text-align: right;
     color: var(--muted);
   }
 
-  .timeline__title {
-    margin: 0 0 0.2rem;
+  .rail__node {
+    grid-area: node;
+    position: relative;
+    z-index: 1;
+    width: var(--rail-node);
+    height: var(--rail-node);
+    margin-top: 1.1rem;
+    border-radius: 3px;
+    /* opaque match for --border so the rail doesn't show through */
+    background: color-mix(in srgb, var(--ink) 10%, var(--surface));
+    box-sizing: border-box;
+  }
+
+  .rail__node--label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    margin-top: 0;
+    margin-left: calc(var(--rail-node) / -2);
+    border: 0;
+    background: transparent;
+  }
+
+  .rail__edu-tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--surface);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .rail__card {
+    grid-area: card;
+    padding: 0.95rem 1.05rem;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--surface) 88%, #fff);
+    opacity: 0;
+    transform: translateX(-1.25rem);
+    transition:
+      opacity 520ms var(--ease),
+      transform 520ms var(--ease);
+  }
+
+  .rail__item.is-in .rail__card {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .rail__item:nth-child(1) .rail__card {
+    transition-delay: 0ms;
+  }
+  .rail__item:nth-child(2) .rail__card {
+    transition-delay: 40ms;
+  }
+  .rail__item:nth-child(3) .rail__card {
+    transition-delay: 80ms;
+  }
+  .rail__item:nth-child(4) .rail__card {
+    transition-delay: 120ms;
+  }
+
+  .rail__title {
+    margin: 0 0 0.25rem;
     font-size: 1.05rem;
     font-weight: 600;
+    line-height: 1.35;
   }
 
-  .timeline__org {
+  .rail__org {
     font-weight: 500;
     color: var(--muted);
   }
 
-  .timeline__place {
-    margin: 0 0 0.4rem;
+  .rail__org-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 160ms var(--ease), border-color 160ms var(--ease);
+  }
+
+  .rail__org-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .rail__place {
+    margin: 0;
     font-size: 0.9rem;
     color: var(--muted);
   }
 
-  .timeline__summary {
-    margin: 0;
+  .rail__summary {
+    margin: 0.45rem 0 0;
     color: var(--ink);
+    font-size: 0.98rem;
+    line-height: 1.55;
   }
 
-  .edu-heading {
-    margin: 2.25rem 0 0.85rem;
-    font-family: var(--font-display);
-    font-size: 1.15rem;
+  .rail__card:has(.rail__summary) .rail__place {
+    margin-bottom: 0;
   }
 
-  .edu {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  @media (prefers-reduced-motion: reduce) {
+    .rail__card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 
-  .edu__item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    padding: 0.75rem 0;
-    border-top: 1px solid var(--border);
-  }
+  @media (max-width: 720px) {
+    .rail {
+      --rail-date: 0;
+      --rail-gap: 0.85rem;
+    }
 
-  .edu__item:last-child {
-    border-bottom: 1px solid var(--border);
-  }
+    .rail::before {
+      left: calc(var(--rail-node) / 2);
+    }
 
-  .edu__degree {
-    font-weight: 600;
-  }
+    .rail__item {
+      grid-template-columns: var(--rail-node) minmax(0, 1fr);
+      grid-template-areas:
+        'node date'
+        'node card';
+      row-gap: 0.35rem;
+    }
 
-  .edu__org {
-    color: var(--muted);
-    font-size: 0.95rem;
-  }
+    .rail__break {
+      grid-template-columns: var(--rail-node) minmax(0, 1fr);
+      grid-template-areas: 'node card';
+    }
 
-  @media (max-width: 640px) {
-    .timeline__item {
-      grid-template-columns: 1fr;
-      gap: 0.3rem;
+    .rail__break .rail__date {
+      display: none;
+    }
+
+    .rail__date {
+      padding-top: 0.15rem;
+      text-align: left;
+    }
+
+    .rail__node {
+      margin-top: 0.35rem;
+    }
+
+    .rail__node--label {
+      margin-left: 0;
+      margin-top: 0;
     }
   }
 </style>
+
+<script>
+  const root = document.querySelector('[data-rail]');
+  if (root) {
+    const items = [...root.querySelectorAll('[data-rail-item]')];
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      items.forEach((el) => el.classList.add('is-in'));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.28, rootMargin: '0px 0px -8% 0px' },
+      );
+      items.forEach((el) => io.observe(el));
+    }
+  }
+</script>

@@ -20,6 +20,10 @@ export const bioSchema = z.object({
   location: z.string().min(1),
   email: z.string().email(),
   links: linkMap,
+  metrics: z.object({
+    citations: z.number().int().nonnegative(),
+    hIndex: z.number().int().nonnegative(),
+  }),
   cv: z.object({
     primary: cvLink,
     secondary: cvLink.optional(),
@@ -42,6 +46,7 @@ export const experienceSchema = z.object({
     z.object({
       title: z.string().min(1),
       org: z.string().min(1),
+      url: z.string().url(),
       dept: z.string().optional(),
       location: z.string().min(1),
       start: z.string().min(1),
@@ -53,6 +58,7 @@ export const experienceSchema = z.object({
     z.object({
       degree: z.string().min(1),
       org: z.string().min(1),
+      url: z.string().url(),
       location: z.string().min(1),
       start: z.string().min(1),
       end: z.string().min(1),
@@ -90,18 +96,60 @@ export const publicationsSchema = z.object({
         title: z.string().min(1),
         venue: z.string().min(1),
         year: z.number().int(),
-        finding: z.string().min(1),
+        problem: z.string().min(1),
+        method: z.string().min(1),
+        impact: z.string().min(1),
+        tags: z.array(z.string().min(1)).min(1),
         doi: z.string().url(),
         pubmed: z.string().url(),
         code: z.string().url().optional(),
       }),
     )
     .min(1),
-  indexes: z.object({
-    scholar: z.string().url(),
-    orcid: z.string().url(),
-    scopus: z.string().url(),
+});
+
+export const publicationIndexesSchema = z.object({
+  scholar: z.string().url(),
+  orcid: z.string().url(),
+  scopus: z.string().url(),
+});
+
+export const techniqueSchema = z.enum([
+  'longread_rna',
+  'cfdna_fragmentomics',
+  'cfdna_genomics_epigenomics',
+  'longread_cfdna',
+  'other',
+]);
+
+export const collabGraphSchema = z.object({
+  generatedAt: z.string().min(1),
+  source: z.object({
+    provider: z.literal('openalex'),
+    orcid: z.string().min(1),
+    filter: z.string().min(1),
+    minYear: z.number().int().optional(),
   }),
+  counts: z.object({
+    papers: z.number().int(),
+    byTechnique: z.record(z.string(), z.number().int()),
+  }),
+  techniqueLabels: z.record(z.string(), z.string()),
+  papers: z.array(
+    z.object({
+      id: z.string().min(1),
+      type: z.literal('paper'),
+      title: z.string().min(1),
+      year: z.number().int().nullable(),
+      venue: z.string(),
+      url: z.string().url(),
+      doi: z.string(),
+      technique: techniqueSchema,
+      firstAuthor: z.string().min(1),
+      led: z.boolean(),
+      openAlexType: z.string().min(1).optional(),
+    }),
+  ),
 });
 
 export type Bio = z.infer<typeof bioSchema>;
@@ -109,3 +157,6 @@ export type Skills = z.infer<typeof skillsSchema>;
 export type Experience = z.infer<typeof experienceSchema>;
 export type Work = z.infer<typeof workSchema>;
 export type Publications = z.infer<typeof publicationsSchema>;
+export type PublicationIndexes = z.infer<typeof publicationIndexesSchema>;
+export type CollabGraph = z.infer<typeof collabGraphSchema>;
+export type Technique = z.infer<typeof techniqueSchema>;

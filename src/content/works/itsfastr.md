@@ -1,6 +1,6 @@
 ---
 title: ITSFASTR
-subtitle: Ultra-fast cfDNA analysis from ONT and Illumina
+subtitle: Ultra-fast cfDNA analysis · ONT · Illumina
 year: 2023
 venueLabel: EMBO Molecular Medicine
 problem: >
@@ -11,8 +11,7 @@ method: >
   and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina
   sequencing data.
 impact: >
-  Pipeline and study published in EMBO Molecular Medicine (PMID 37942753),
-  demonstrating long-read fragmentomics for liquid biopsy.
+  Pipeline and study published in EMBO Molecular Medicine, demonstrating the value of long-reads for liquid biopsy.
 tags:
   - cfDNA
   - nanopore

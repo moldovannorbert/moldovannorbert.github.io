@@ -4,15 +4,12 @@ subtitle: Fragment End Integrated Analysis
 year: 2024
 venueLabel: Cell Reports Medicine
 problem: >
-  Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS
-  needs robust end-sequence metrics to turn that biology into a detection signal.
+  Shallow WGS is afordable but lacks the depth needed for conventional mutation-based ctDNA detection.
 method: >
-  Snakemake pipeline extracting fragment-end sequence proportions and diversity,
-  integrating copy-number aberration, fragment size, and end-sequence features
-  into a FrEIA score with machine-learning classification for cancer detection.
+  Snakemake pipeline extracting cfDNA fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.
 impact: >
   Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses
-  for cancer survival and recurrence (PMID 38128532).
+  for cancer survival and recurrence.
 tags:
   - cfDNA
   - fragmentomics

@@ -21,6 +21,10 @@ const bioSchema = z.object({
     linkedin: z.string().url(),
     orcid: z.string().url(),
   }),
+  metrics: z.object({
+    citations: z.number().int().nonnegative(),
+    hIndex: z.number().int().nonnegative(),
+  }),
   cv: z.object({
     primary: z.object({ label: z.string(), href: z.string() }),
     secondary: z.object({ label: z.string(), href: z.string() }).optional(),
@@ -43,6 +47,7 @@ const experienceSchema = z.object({
     z.object({
       title: z.string().min(1),
       org: z.string().min(1),
+      url: z.string().url(),
       dept: z.string().optional(),
       location: z.string().min(1),
       start: z.string().min(1),
@@ -54,6 +59,7 @@ const experienceSchema = z.object({
     z.object({
       degree: z.string().min(1),
       org: z.string().min(1),
+      url: z.string().url(),
       location: z.string().min(1),
       start: z.string().min(1),
       end: z.string().min(1),
@@ -89,18 +95,22 @@ const publicationsSchema = z.object({
         title: z.string().min(1),
         venue: z.string().min(1),
         year: z.number().int(),
-        finding: z.string().min(1),
+        problem: z.string().min(1),
+        method: z.string().min(1),
+        impact: z.string().min(1),
+        tags: z.array(z.string().min(1)).min(1),
         doi: z.string().url(),
         pubmed: z.string().url(),
         code: z.string().url().optional(),
       }),
     )
     .min(1),
-  indexes: z.object({
-    scholar: z.string().url(),
-    orcid: z.string().url(),
-    scopus: z.string().url(),
-  }),
+});
+
+const publicationIndexesSchema = z.object({
+  scholar: z.string().url(),
+  orcid: z.string().url(),
+  scopus: z.string().url(),
 });
 
 function readYaml(rel, schema) {
@@ -111,6 +121,7 @@ const bio = readYaml('bio.yaml', bioSchema);
 const skills = readYaml('skills.yaml', skillsSchema);
 const experience = readYaml('experience.yaml', experienceSchema);
 const publications = readYaml('publications/featured.yaml', publicationsSchema);
+const publicationIndexes = readYaml('publications/meta.yaml', publicationIndexesSchema);
 
 const works = readdirSync(join(contentDir, 'works'))
   .filter((f) => f.endsWith('.md'))
@@ -131,11 +142,13 @@ const corpus = {
     location: bio.location,
     email: bio.email,
     links: bio.links,
+    metrics: bio.metrics,
   },
   skills: skills.pillars,
   experience: experience.roles.map((r) => ({
     title: r.title,
     org: r.org,
+    url: r.url,
     dept: r.dept,
     location: r.location,
     start: r.start,
@@ -160,12 +173,15 @@ const corpus = {
       title: p.title.trim(),
       venue: p.venue,
       year: p.year,
-      finding: p.finding.trim(),
+      problem: p.problem.trim(),
+      method: p.method.trim(),
+      impact: p.impact.trim(),
+      tags: p.tags,
       doi: p.doi,
       pubmed: p.pubmed,
       code: p.code,
     })),
-    indexes: publications.indexes,
+      indexes: publicationIndexes,
   },
 };
 

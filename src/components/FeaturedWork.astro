@@ -6,6 +6,11 @@ interface Props {
 }
 
 const { works } = Astro.props;
+
+function hasLinks(work: Work) {
+  const { repo, pubmed, doi, docs } = work.links;
+  return Boolean(repo || pubmed || doi || docs);
+}
 ---
 
 <section class="section section--band" id="work" aria-labelledby="work-title">
@@ -29,15 +34,15 @@ const { works } = Astro.props;
             <dl class="work__fields">
               <div>
                 <dt>Problem</dt>
-                <dd class="prose">{work.problem.trim()}</dd>
+                <dd>{work.problem.trim()}</dd>
               </div>
               <div>
                 <dt>Method</dt>
-                <dd class="prose">{work.method.trim()}</dd>
+                <dd>{work.method.trim()}</dd>
               </div>
               <div>
                 <dt>Impact</dt>
-                <dd class="prose">{work.impact.trim()}</dd>
+                <dd>{work.impact.trim()}</dd>
               </div>
             </dl>
             <ul class="work__tags">
@@ -45,28 +50,78 @@ const { works } = Astro.props;
                 <li>{t}</li>
               ))}
             </ul>
-            <p class="work__links">
-              {work.links.repo && (
-                <a class="work__link" href={work.links.repo}>
-                  Repository
-                </a>
-              )}
-              {work.links.pubmed && (
-                <a class="work__link" href={work.links.pubmed}>
-                  PubMed
-                </a>
-              )}
-              {work.links.doi && (
-                <a class="work__link" href={work.links.doi}>
-                  DOI
-                </a>
-              )}
-              {work.links.docs && (
-                <a class="work__link" href={work.links.docs}>
-                  Docs
-                </a>
-              )}
-            </p>
+            {hasLinks(work) && (
+              <p class="work__links">
+                {work.links.repo && (
+                  <a
+                    class="work__link"
+                    href={work.links.repo}
+                    aria-label="Repository"
+                    title="Repository"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                      ></path>
+                    </svg>
+                  </a>
+                )}
+                {work.links.pubmed && (
+                  <a
+                    class="work__link"
+                    href={work.links.pubmed}
+                    aria-label="PubMed"
+                    title="PubMed"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M8.23 7.982l.006-1.005C7.846 1.417 5.096 0 5.096 0l.048 2.291C3.73 1.056 2.6 1.444 2.6 1.444l.118 15.307s4.218-1.796 5.428 5.505C10.238 13.535 21.401 24 21.401 24V9S10.52-.18 8.231 7.982zm9.79 9.941l-1.046-5.232-1.904 4.507h-.96l-1.72-4.301-1.046 5.04H9.321l2.093-9.39h.802l2.491 5.543 2.508-5.557h.869l2.075 9.39h-2.138z"
+                      ></path>
+                    </svg>
+                  </a>
+                )}
+                {work.links.doi && (
+                  <a
+                    class="work__link"
+                    href={work.links.doi}
+                    aria-label="DOI"
+                    title="DOI"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M24 12c0 6.633-5.367 12-12 12S0 18.633 0 12 5.367 0 12 0s12 5.367 12 12ZM7.588 6.097v4.471c-.663-.925-1.403-1.373-2.406-1.373-2.046 0-3.244 1.441-3.244 3.847 0 2.357 1.325 3.848 3.166 3.848 1.12 0 1.88-.4 2.445-1.325l-.039 1.042h2.045V6.097Zm-1.763 8.942c-1.12 0-1.802-.76-1.802-2.045 0-1.325.682-2.085 1.802-2.085 1.081 0 1.802.76 1.802 2.085 0 1.285-.672 2.045-1.802 2.045Zm12.253-1.948c0-2.172-1.578-3.789-3.906-3.789-2.328 0-3.945 1.695-3.945 3.789 0 2.133 1.578 3.789 3.945 3.789 2.289 0 3.906-1.656 3.906-3.789Zm-2.094-.01c0 1.14-.711 1.89-1.851 1.89-1.139 0-1.851-.75-1.851-1.89 0-1.139.712-1.89 1.851-1.89 1.149 0 1.861.751 1.851 1.89Zm2.6-5.795c0 .633.517 1.227 1.189 1.227.633 0 1.188-.555 1.188-1.227a1.17 1.17 0 0 0-1.188-1.189c-.672 0-1.179.556-1.189 1.189Zm.166 9.341h2.055V9.604H18.75Z"
+                      ></path>
+                    </svg>
+                  </a>
+                )}
+                {work.links.docs && (
+                  <a
+                    class="work__link"
+                    href={work.links.docs}
+                    aria-label="Docs"
+                    title="Docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill="currentColor"
+                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2 4 4h-4zm-1 5v2H7v-2zm0 4v2H7v-2zm-5 4h5v2H8z"
+                      ></path>
+                    </svg>
+                  </a>
+                )}
+              </p>
+            )}
           </article>
         ))
       }
@@ -76,22 +131,29 @@ const { works } = Astro.props;
 
 <style>
   .works {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
   }
 
   .work {
-    padding: 1.75rem 0;
-    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 1.25rem 1.2rem 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--surface) 70%, #fff);
   }
 
-  .work:last-child {
-    border-bottom: 1px solid var(--border);
+  .work__head {
+    margin-bottom: 1rem;
   }
 
   .work__meta {
     margin: 0 0 0.35rem;
-    font-size: 0.88rem;
+    font-size: 0.8rem;
     font-weight: 500;
     color: var(--muted);
   }
@@ -99,71 +161,98 @@ const { works } = Astro.props;
   .work__title {
     margin: 0;
     font-family: var(--font-display);
-    font-size: 1.45rem;
+    font-size: clamp(1.15rem, 1.8vw, 1.35rem);
     font-weight: 600;
     letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .work__subtitle {
-    margin: 0.25rem 0 1.1rem;
+    margin: 0.35rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.45;
     color: var(--muted);
   }
 
   .work__fields {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin: 0 0 1.1rem;
+    gap: 0.85rem;
+    flex: 1;
+    margin: 0 0 1rem;
   }
 
   .work__fields dt {
     margin: 0 0 0.2rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
     color: var(--accent);
   }
 
   .work__fields dd {
     margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
     color: var(--ink);
   }
 
   .work__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem 0.65rem;
+    gap: 0.3rem 0.55rem;
     margin: 0 0 0.9rem;
     padding: 0;
     list-style: none;
   }
 
   .work__tags li {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 500;
     color: var(--muted);
   }
 
   .work__tags li:not(:last-child)::after {
     content: '·';
-    margin-left: 0.65rem;
-    color: var(--border);
+    margin-left: 0.55rem;
+    color: color-mix(in srgb, var(--ink) 18%, transparent);
   }
 
   .work__links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem 1.25rem;
-    margin: 0;
+    align-items: center;
+    gap: 0.15rem;
+    margin: auto 0 0;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border);
   }
 
   .work__link {
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--ink);
     text-decoration: none;
-    border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-    transition: border-color 160ms var(--ease), color 160ms var(--ease);
+    border-radius: 3px;
+    transition: color 160ms var(--ease), background 160ms var(--ease);
   }
 
   .work__link:hover {
-    border-bottom-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .work__link svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  @media (max-width: 900px) {
+    .works {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

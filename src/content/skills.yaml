@@ -1,19 +1,16 @@
 pillars:
-  - title: Liquid biopsy & multi-omics
+  - title: ML for multi-omics data
     items:
-      - cfDNA fragmentomics and end-sequence analysis for cancer detection and MRD
+      - Deep learning and predictive models (PyTorch, scikit-learn)
+      - Embeddings, transformers, and diffusion models
+      - High-dimensional unstructured genomic and transcriptomic data
+  - title: Liquid biopsy and biomarkers
+    items:
+      - cfDNA genomics, epigenomics, and fragmentomics for cancer detection and MRD
       - Short- and long-read sequencing (Illumina, Oxford Nanopore, PacBio)
       - DNA and RNA workflows including circRNA from liquid biopsies
-      - Multi-omics integration for biomarker discovery
-  - title: ML for genomic data
-    items:
-      - Deep learning and predictive models for liquid biopsy analysis (PyTorch, scikit-learn)
-      - Embeddings, transformers, and diffusion models for sequence and cfDNA data
-      - High-dimensional unstructured genomic and transcriptomic data
-      - Hyperparameter optimization with Optuna
-  - title: Pipelines & HPC
+  - title: Pipelines and HPC
     items:
       - Python, R, and Bash for production bioinformatics tooling
       - Snakemake and Mamba/Conda for scalable, reproducible pipelines
-      - Slurm HPC workflows, multi-threading, and GPU acceleration
-      - FAIR data practices for sequencing analysis
+      - Slurm HPC workflows, multi-threading and GPU acceleration

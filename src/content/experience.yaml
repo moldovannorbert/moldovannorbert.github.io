@@ -1,6 +1,7 @@
 roles:
   - title: Bioinformatician
     org: Erasmus University Medical Center
+    url: https://www.erasmusmc.nl/en/
     dept: Department of Molecular Oncology
     location: Rotterdam, NL
     start: "2024-08"
@@ -11,6 +12,7 @@ roles:
       sequencing.
   - title: Bioinformatician
     org: Amsterdam University Medical Center
+    url: https://www.amsterdamumc.org/en
     dept: Cancer Center Amsterdam, Department of Pathology
     location: Amsterdam, NL
     start: "2020-08"
@@ -20,12 +22,14 @@ roles:
       liquid biopsy, and built tools for circRNA detection from liquid biopsies.
   - title: Bioinformatician (affiliation)
     org: University of Manchester
+    url: https://www.manchester.ac.uk/
     location: Manchester, UK
     start: "2023-11"
     end: "2024-08"
     summary: Research affiliation in liquid biopsy bioinformatics.
   - title: Bioinformatics consultant
     org: Griffsoft Zrt.
+    url: https://www.griffsoft.hu/
     location: Szeged, HU
     start: "2019-09"
     end: "2021-08"
@@ -35,16 +39,19 @@ roles:
 education:
   - degree: PhD in Medical Genetics
     org: University of Szeged, Faculty of General Medicine
+    url: https://u-szeged.hu/english
     location: Szeged, HU
     start: "2016"
     end: "2020"
   - degree: M.Sc. in Biology
     org: Babeș-Bolyai University
+    url: https://www.ubbcluj.ro/en/
     location: Cluj-Napoca, RO
     start: "2010"
     end: "2012"
   - degree: B.Sc. in Biology
     org: Babeș-Bolyai University
+    url: https://www.ubbcluj.ro/en/
     location: Cluj-Napoca, RO
     start: "2007"
     end: "2010"

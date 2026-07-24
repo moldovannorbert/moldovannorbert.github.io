@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "npm run prebuild && astro build"
+    "check": "npm run prebuild && astro build",
+    "collab:fetch": "node scripts/fetch-collab-graph.mjs"
   },
   "dependencies": {
     "astro": "^7.1.3",

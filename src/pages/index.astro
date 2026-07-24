@@ -9,7 +9,8 @@ import Publications from '../components/Publications.astro';
 import Contact from '../components/Contact.astro';
 import { loadContent } from '../lib/content';
 
-const { bio, skills, experience, works, publications } = loadContent();
+const { bio, skills, experience, works, publications, publicationIndexes, collabGraph } =
+  loadContent();
 
 const description = `${bio.title}. ${bio.pitch.trim()}`;
 const title = `${bio.name} · ${bio.title}`;
@@ -32,13 +33,17 @@ const jsonLd = {
 ---
 
 <BaseLayout title={title} description={description} jsonLd={jsonLd}>
-  <Nav name={bio.name} />
+  <Nav />
   <main id="main">
     <Hero bio={bio} />
     <Pillars skills={skills} />
     <Experience experience={experience} />
     <FeaturedWork works={works} />
-    <Publications publications={publications} />
+    <Publications
+      graph={collabGraph}
+      indexes={publicationIndexes}
+      highlights={publications.featured}
+    />
   </main>
   <Contact bio={bio} />
 </BaseLayout>

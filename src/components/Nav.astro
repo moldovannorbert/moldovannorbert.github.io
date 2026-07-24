@@ -1,9 +1,5 @@
 ---
-interface Props {
-  name: string;
-}
-
-const { name } = Astro.props;
+const brand = 'The Journey of a Bioinformatician';
 
 const links = [
   { href: '#expertise', label: 'Expertise' },
@@ -16,7 +12,7 @@ const links = [
 
 <header class="nav" data-nav>
   <div class="wrap nav__inner">
-    <a class="nav__brand" href="#top">{name}</a>
+    <a class="nav__brand" href="#top">{brand}</a>
     <button
       class="nav__toggle"
       type="button"
@@ -58,11 +54,13 @@ const links = [
 
   .nav__brand {
     font-family: var(--font-display);
-    font-size: 0.95rem;
+    font-size: clamp(0.78rem, 1.6vw, 0.95rem);
     font-weight: 600;
     color: var(--muted);
     text-decoration: none;
     letter-spacing: -0.01em;
+    min-width: 0;
+    text-wrap: balance;
   }
 
   .nav__brand:hover {

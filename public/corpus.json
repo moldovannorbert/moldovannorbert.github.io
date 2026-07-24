@@ -4,8 +4,8 @@
   "person": {
     "name": "Norbert Moldován",
     "title": "Senior Bioinformatician",
-    "tagline": "Liquid biopsy · cfDNA fragmentomics · machine learning",
-    "pitch": "I build computational pipelines and predictive models for circulating nucleic acids—combining multi-omics, fragmentomics, and deep learning to surface biomarkers for cancer detection and monitoring.",
+    "tagline": "Multi-omics · Liquid Biopsy · Machine Learning",
+    "pitch": "I build computational pipelines and predictive models for basic and translational research.",
     "location": "Amsterdam, NL",
     "email": "n.moldovan@pm.me",
     "links": {
@@ -13,34 +13,35 @@
       "scholar": "https://scholar.google.com/citations?user=mMrx75QAAAAJ",
       "linkedin": "https://www.linkedin.com/in/norbert-moldovan/",
       "orcid": "https://orcid.org/0000-0003-4138-586X"
+    },
+    "metrics": {
+      "citations": 1286,
+      "hIndex": 20
     }
   },
   "skills": [
     {
-      "title": "Liquid biopsy & multi-omics",
+      "title": "ML for multi-omics data",
       "items": [
-        "cfDNA fragmentomics and end-sequence analysis for cancer detection and MRD",
+        "Deep learning and predictive models (PyTorch, scikit-learn)",
+        "Embeddings, transformers, and diffusion models",
+        "High-dimensional unstructured genomic and transcriptomic data"
+      ]
+    },
+    {
+      "title": "Liquid biopsy and biomarkers",
+      "items": [
+        "cfDNA genomics, epigenomics, and fragmentomics for cancer detection and MRD",
         "Short- and long-read sequencing (Illumina, Oxford Nanopore, PacBio)",
-        "DNA and RNA workflows including circRNA from liquid biopsies",
-        "Multi-omics integration for biomarker discovery"
+        "DNA and RNA workflows including circRNA from liquid biopsies"
       ]
     },
     {
-      "title": "ML for genomic data",
-      "items": [
-        "Deep learning and predictive models for liquid biopsy analysis (PyTorch, scikit-learn)",
-        "Embeddings, transformers, and diffusion models for sequence and cfDNA data",
-        "High-dimensional unstructured genomic and transcriptomic data",
-        "Hyperparameter optimization with Optuna"
-      ]
-    },
-    {
-      "title": "Pipelines & HPC",
+      "title": "Pipelines and HPC",
       "items": [
         "Python, R, and Bash for production bioinformatics tooling",
         "Snakemake and Mamba/Conda for scalable, reproducible pipelines",
-        "Slurm HPC workflows, multi-threading, and GPU acceleration",
-        "FAIR data practices for sequencing analysis"
+        "Slurm HPC workflows, multi-threading and GPU acceleration"
       ]
     }
   ],
@@ -48,6 +49,7 @@
     {
       "title": "Bioinformatician",
       "org": "Erasmus University Medical Center",
+      "url": "https://www.erasmusmc.nl/en/",
       "dept": "Department of Molecular Oncology",
       "location": "Rotterdam, NL",
       "start": "2024-08",
@@ -57,6 +59,7 @@
     {
       "title": "Bioinformatician",
       "org": "Amsterdam University Medical Center",
+      "url": "https://www.amsterdamumc.org/en",
       "dept": "Cancer Center Amsterdam, Department of Pathology",
       "location": "Amsterdam, NL",
       "start": "2020-08",
@@ -66,6 +69,7 @@
     {
       "title": "Bioinformatician (affiliation)",
       "org": "University of Manchester",
+      "url": "https://www.manchester.ac.uk/",
       "location": "Manchester, UK",
       "start": "2023-11",
       "end": "2024-08",
@@ -74,6 +78,7 @@
     {
       "title": "Bioinformatics consultant",
       "org": "Griffsoft Zrt.",
+      "url": "https://www.griffsoft.hu/",
       "location": "Szeged, HU",
       "start": "2019-09",
       "end": "2021-08",
@@ -84,6 +89,7 @@
     {
       "degree": "PhD in Medical Genetics",
       "org": "University of Szeged, Faculty of General Medicine",
+      "url": "https://u-szeged.hu/english",
       "location": "Szeged, HU",
       "start": "2016",
       "end": "2020"
@@ -91,6 +97,7 @@
     {
       "degree": "M.Sc. in Biology",
       "org": "Babeș-Bolyai University",
+      "url": "https://www.ubbcluj.ro/en/",
       "location": "Cluj-Napoca, RO",
       "start": "2010",
       "end": "2012"
@@ -98,6 +105,7 @@
     {
       "degree": "B.Sc. in Biology",
       "org": "Babeș-Bolyai University",
+      "url": "https://www.ubbcluj.ro/en/",
       "location": "Cluj-Napoca, RO",
       "start": "2007",
       "end": "2010"
@@ -109,9 +117,9 @@
       "subtitle": "Fragment End Integrated Analysis",
       "year": 2024,
       "venueLabel": "Cell Reports Medicine",
-      "problem": "Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS needs robust end-sequence metrics to turn that biology into a detection signal.",
-      "method": "Snakemake pipeline extracting fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
-      "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence (PMID 38128532).",
+      "problem": "Shallow WGS is afordable but lacks the depth needed for conventional mutation-based ctDNA detection.",
+      "method": "Snakemake pipeline extracting cfDNA fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
+      "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence.",
       "tags": [
         "cfDNA",
         "fragmentomics",
@@ -127,12 +135,12 @@
     },
     {
       "title": "ITSFASTR",
-      "subtitle": "Ultra-fast cfDNA analysis from ONT and Illumina",
+      "subtitle": "Ultra-fast cfDNA analysis · ONT · Illumina",
       "year": 2023,
       "venueLabel": "EMBO Molecular Medicine",
       "problem": "Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge assumptions about tumor-derived fragment length in liquid biopsy.",
       "method": "End-to-end bioinformatics pipeline for real-time analysis of the cancer genome and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina sequencing data.",
-      "impact": "Pipeline and study published in EMBO Molecular Medicine (PMID 37942753), demonstrating long-read fragmentomics for liquid biopsy.",
+      "impact": "Pipeline and study published in EMBO Molecular Medicine, demonstrating the value of long-reads for liquid biopsy.",
       "tags": [
         "cfDNA",
         "nanopore",
@@ -171,7 +179,16 @@
         "title": "Multi-modal cell-free DNA genomic and fragmentomic patterns enhance cancer survival and recurrence analysis",
         "venue": "Cell Reports Medicine",
         "year": 2024,
-        "finding": "FrEIA-style multi-modal cfDNA features improve cancer survival and recurrence analysis from liquid biopsy sequencing.",
+        "problem": "Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS needs robust end-sequence metrics to turn that biology into a detection signal.",
+        "method": "Snakemake pipeline extracting fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
+        "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence (PMID 38128532).",
+        "tags": [
+          "cfDNA",
+          "fragmentomics",
+          "Snakemake",
+          "Python",
+          "liquid biopsy"
+        ],
         "doi": "https://doi.org/10.1016/j.xcrm.2023.101349",
         "pubmed": "https://pubmed.ncbi.nlm.nih.gov/38128532/",
         "code": "https://github.com/mouliere-lab/FrEIA"
@@ -181,19 +198,37 @@
         "title": "Real-time analysis of the cancer genome and fragmentome from plasma and urine cell-free DNA using nanopore sequencing",
         "venue": "EMBO Molecular Medicine",
         "year": 2023,
-        "finding": "Long cfDNA fragments from ONT sequencing reshape fragmentome interpretation in plasma and urine liquid biopsies.",
+        "problem": "Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge assumptions about tumor-derived fragment length in liquid biopsy.",
+        "method": "End-to-end bioinformatics pipeline for real-time analysis of the cancer genome and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina sequencing data.",
+        "impact": "Pipeline and study published in EMBO Molecular Medicine (PMID 37942753), demonstrating long-read fragmentomics for liquid biopsy.",
+        "tags": [
+          "cfDNA",
+          "nanopore",
+          "Illumina",
+          "fragmentomics",
+          "pipeline"
+        ],
         "doi": "https://doi.org/10.15252/emmm.202217282",
         "pubmed": "https://pubmed.ncbi.nlm.nih.gov/37942753/",
         "code": "https://github.com/mouliere-lab/ITSFASTR"
       },
       {
-        "pmid": "39262778",
-        "title": "Comparison of cell-free and small extracellular-vesicle-associated DNA by sequencing plasma of lung cancer patients",
-        "venue": "iScience",
-        "year": 2024,
-        "finding": "EV fractions in plasma are not enriched in tumor-derived DNA relative to cell-free DNA, informing liquid biopsy strategy.",
-        "doi": "https://doi.org/10.1016/j.isci.2024.110742",
-        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/39262778/"
+        "pmid": "29899552",
+        "title": "Third-generation Sequencing Reveals Extensive Polycistronism and Transcriptional Overlapping in a Baculovirus",
+        "venue": "Scientific Reports",
+        "year": 2018,
+        "problem": "Short-read assays under-resolve overlapping and polycistronic transcription in compact viral genomes, obscuring true transcript architecture.",
+        "method": "PacBio long-read sequencing of Autographa californica multiple nucleopolyhedrovirus RNA to map full-length isoforms, polycistronic RNAs, and transcriptional overlaps.",
+        "impact": "First-author Scientific Reports study establishing long-read isoform mapping for a prototype baculovirus transcriptome.",
+        "tags": [
+          "long-read",
+          "RNA-seq",
+          "baculovirus",
+          "PacBio",
+          "transcriptomics"
+        ],
+        "doi": "https://doi.org/10.1038/s41598-018-26955-8",
+        "pubmed": "https://pubmed.ncbi.nlm.nih.gov/29899552/"
       }
     ],
     "indexes": {
