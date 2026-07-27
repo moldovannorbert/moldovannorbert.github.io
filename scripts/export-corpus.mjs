@@ -29,6 +29,12 @@ const bioSchema = z.object({
     primary: z.object({ label: z.string(), href: z.string() }),
     secondary: z.object({ label: z.string(), href: z.string() }).optional(),
   }),
+  now: z.string().min(1),
+});
+
+const skillDetailBlockSchema = z.object({
+  heading: z.string().min(1).optional(),
+  text: z.string().min(1),
 });
 
 const skillsSchema = z.object({
@@ -36,11 +42,27 @@ const skillsSchema = z.object({
     .array(
       z.object({
         title: z.string().min(1),
-        items: z.array(z.string().min(1)).min(1).max(6),
+        items: z
+          .array(
+            z.object({
+              label: z.string().min(1),
+              detail: z.union([z.string().min(1), z.array(skillDetailBlockSchema).min(1)]),
+              image: z.string().min(1),
+            }),
+          )
+          .min(1)
+          .max(6),
       }),
     )
     .length(3),
 });
+
+function flattenSkillDetail(detail) {
+  if (typeof detail === 'string') return detail;
+  return detail
+    .map((b) => (b.heading ? `${b.heading}: ${b.text}` : b.text))
+    .join(' ');
+}
 
 const experienceSchema = z.object({
   roles: z.array(
@@ -143,8 +165,15 @@ const corpus = {
     email: bio.email,
     links: bio.links,
     metrics: bio.metrics,
+    now: bio.now.trim(),
   },
-  skills: skills.pillars,
+  skills: skills.pillars.map((p) => ({
+    title: p.title,
+    items: p.items.map(({ label, detail }) => ({
+      label,
+      detail: flattenSkillDetail(detail),
+    })),
+  })),
   experience: experience.roles.map((r) => ({
     title: r.title,
     org: r.org,

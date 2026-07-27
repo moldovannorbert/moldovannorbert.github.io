@@ -28,6 +28,12 @@ export const bioSchema = z.object({
     primary: cvLink,
     secondary: cvLink.optional(),
   }),
+  now: z.string().min(1),
+});
+
+export const skillDetailBlockSchema = z.object({
+  heading: z.string().min(1).optional(),
+  text: z.string().min(1),
 });
 
 export const skillsSchema = z.object({
@@ -35,7 +41,17 @@ export const skillsSchema = z.object({
     .array(
       z.object({
         title: z.string().min(1),
-        items: z.array(z.string().min(1)).min(1).max(6),
+        items: z
+          .array(
+            z.object({
+              label: z.string().min(1),
+              /** Plain string or list of { heading?, text } blocks for the expanded card. */
+              detail: z.union([z.string().min(1), z.array(skillDetailBlockSchema).min(1)]),
+              image: z.string().min(1),
+            }),
+          )
+          .min(1)
+          .max(6),
       }),
     )
     .length(3),

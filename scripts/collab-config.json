@@ -61,7 +61,7 @@
     "10.1016/j.virusres.2017.05.010": "longread_rna"
   },
   "techniqueLabels": {
-    "longread_rna": "Long-read RNA-seq",
+    "longread_rna": "Multi-modal RNA-seq",
     "cfdna_fragmentomics": "cfDNA fragmentomics",
     "cfdna_genomics_epigenomics": "cfDNA genomics & epigenomics",
     "longread_cfdna": "Long-read cfDNA",

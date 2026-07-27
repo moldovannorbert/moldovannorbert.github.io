@@ -4,7 +4,7 @@
   "person": {
     "name": "Norbert Moldován",
     "title": "Senior Bioinformatician",
-    "tagline": "Multi-omics · Liquid Biopsy · Machine Learning",
+    "tagline": "Multi-omics · Machine Learning · Liquid Biopsy",
     "pitch": "I build computational pipelines and predictive models for basic and translational research.",
     "location": "Amsterdam, NL",
     "email": "n.moldovan@pm.me",
@@ -21,27 +21,54 @@
   },
   "skills": [
     {
-      "title": "ML for multi-omics data",
+      "title": "Machine learning for multi-omics",
       "items": [
-        "Deep learning and predictive models (PyTorch, scikit-learn)",
-        "Embeddings, transformers, and diffusion models",
-        "High-dimensional unstructured genomic and transcriptomic data"
+        {
+          "label": "High-dimensional DNA and RNA-seq data",
+          "detail": "What I build: I turn noisy NGS datasets into clean features models can learn from. How: QC, normalization, batch-aware feature engineering, coverage tracks, and long-read signal. Stack: Python, R, Bash. Case study: Genome-wide cfDNA characterization of patients with resectable esophageal cancer (https://pathsocjournals.onlinelibrary.wiley.com/doi/abs/10.1002/path.6175)"
+        },
+        {
+          "label": "Deep learning and predictive models",
+          "detail": "What I build: Classification, survival, and recurrence models from high-dimensional omics features. How: Nested cross-validation with calibrated probabilities, survival objectives, and Optuna-driven hyperparameter search. Stack: PyTorch, scikit-learn, Optuna, deployment-ready tooling. Case study: Multi-modal cfDNA patterns enhance cancer survival and recurrence analysis (https://www.cell.com/cell-reports-medicine/fulltext/S2666-3791(23)00566-9)"
+        },
+        {
+          "label": "Embeddings, transformers, and diffusion models",
+          "detail": "What I build: Representation learning and generative models for sequence and multi-modal genomic data. How: Pretrain or fine-tune sequence encoders and generative backbones, then probe embeddings for downstream phenotype tasks. Stack: PyTorch, Hugging Face, TensorFlow. Case study: cfDNA dataset augmentation using diffusion models (https://www.nwo.nl/en/projects/ngf160923005)"
+        }
       ]
     },
     {
-      "title": "Liquid biopsy and biomarkers",
+      "title": "HPC pipelines",
       "items": [
-        "cfDNA genomics, epigenomics, and fragmentomics for cancer detection and MRD",
-        "Short- and long-read sequencing (Illumina, Oxford Nanopore, PacBio)",
-        "DNA and RNA workflows including circRNA from liquid biopsies"
+        {
+          "label": "Production-ready bioinformatics tooling",
+          "detail": "What I ship: Scripts and libraries labs can run, extend, and trust in day-to-day analysis. How: Agent-assisted development with typed interfaces, tests, and clear CLIs so analyses stay auditable under change. Languages: Python, R, Bash; agentic coding. Figures: Publication-ready plotting with ggplot2, ggsci, seaborn, and matplotlib. Case study: FrEIA — Fragment End Integrated Analysis pipeline (https://github.com/mouliere-lab/FrEIA)"
+        },
+        {
+          "label": "Reproducible workflow orchestration",
+          "detail": "What I build: Scalable pipeline DAGs with locked environments that reproduce across machines. How: Pin environments, declare rule graphs, and checkpoint intermediates so reruns are deterministic and reviewable. Orchestration: Snakemake, Mamba/Conda, Git. Case study: Comparison of cell-free and small extracellular vesicle derived DNA in plasma of lung cancer patients (https://www.cell.com/iscience/fulltext/S2589-0042(24)01967-9)"
+        },
+        {
+          "label": "Slurm HPC and accelerated compute",
+          "detail": "What I build: Cluster jobs that scale CPU and GPU work without reinventing the scheduler. How: Array jobs, resource-aware GPU allocation, and multi-threaded steps tuned to node topology and queue limits. Runtime: Slurm, multi-threading, GPU acceleration. Case study: Early outcome prediction in Large B-Cell Lymphoma (https://www.medrxiv.org/content/10.64898/2026.05.29.26353426v1)"
+        }
       ]
     },
     {
-      "title": "Pipelines and HPC",
+      "title": "Biomarker discovery",
       "items": [
-        "Python, R, and Bash for production bioinformatics tooling",
-        "Snakemake and Mamba/Conda for scalable, reproducible pipelines",
-        "Slurm HPC workflows, multi-threading and GPU acceleration"
+        {
+          "label": "cfDNA genomics, epigenomics, and fragmentomics",
+          "detail": "What I deliver: Multi-omic liquid biopsy signals for detection, monitoring, and MRD. How: Derive fragment-end, length, methylation, and CNV features from plasma WGS/WGBS and train models against clinical endpoints. Readouts: Fragmentomics, methylation, copy-number and mutation features from plasma cfDNA. Case study: The effect of preanalytical variables on cfDNA fragmentation (https://academic.oup.com/clinchem/article-abstract/68/6/803/6549200)"
+        },
+        {
+          "label": "Short- and long-read sequencing analysis",
+          "detail": "What I build: Platform-aware workflows that combine short-read depth with long-read structure. How: Hybrid pipelines that pair Illumina depth for calling with ONT/PacBio span for isoforms, SVs, and haplotype context. Platforms: Illumina, Oxford Nanopore Technologies, PacBio. Case studies: Real-time analysis of cfDNA from plasma and urine (https://link.springer.com/article/10.15252/emmm.202217282) Multi-platform integration reveals novel transcriptome of a virus (https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2017.02708/full)"
+        },
+        {
+          "label": "DNA, RNA from liquid biopsies and beyond",
+          "detail": "What I build: End-to-end DNA and RNA processing pipelines. How: From demultiplexing through alignment, quantification, and differential analysis to ranked biomarker candidates. Focus: Translational methods that move from raw reads to biomarker candidates. Case studies: The effect of preanalytical variables on cfDNA fragmentation (https://academic.oup.com/clinchem/article-abstract/68/6/803/6549200)"
+        }
       ]
     }
   ],
@@ -117,7 +144,7 @@
       "subtitle": "Fragment End Integrated Analysis",
       "year": 2024,
       "venueLabel": "Cell Reports Medicine",
-      "problem": "Shallow WGS is afordable but lacks the depth needed for conventional mutation-based ctDNA detection.",
+      "problem": "Shallow WGS is affordable but lacks the depth needed for conventional mutation-based ctDNA detection.",
       "method": "Snakemake pipeline extracting cfDNA fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
       "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence.",
       "tags": [
@@ -181,7 +208,7 @@
         "year": 2024,
         "problem": "Tumor-derived cfDNA is cleaved differently from healthy DNA, but shallow WGS needs robust end-sequence metrics to turn that biology into a detection signal.",
         "method": "Snakemake pipeline extracting fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.",
-        "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence (PMID 38128532).",
+        "impact": "Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses for cancer survival and recurrence.",
         "tags": [
           "cfDNA",
           "fragmentomics",
@@ -200,7 +227,7 @@
         "year": 2023,
         "problem": "Long (>500 bp) cell-free DNA fragments from nanopore sequencing challenge assumptions about tumor-derived fragment length in liquid biopsy.",
         "method": "End-to-end bioinformatics pipeline for real-time analysis of the cancer genome and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina sequencing data.",
-        "impact": "Pipeline and study published in EMBO Molecular Medicine (PMID 37942753), demonstrating long-read fragmentomics for liquid biopsy.",
+        "impact": "Pipeline and study published in EMBO Molecular Medicine, demonstrating long-read fragmentomics for liquid biopsy.",
         "tags": [
           "cfDNA",
           "nanopore",

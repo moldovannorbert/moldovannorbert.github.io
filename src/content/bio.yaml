@@ -1,6 +1,6 @@
 name: Norbert Moldován
 title: Senior Bioinformatician
-tagline: Multi-omics · Liquid Biopsy · Machine Learning
+tagline: Multi-omics · Machine Learning · Liquid Biopsy
 pitch: >
   I build computational pipelines and predictive models for basic and
   translational research.
@@ -19,3 +19,10 @@ cv:
   primary:
     label: Download CV
     href: /cv-bioinformatician.pdf
+now: |
+  Low tumor content is one of the limiting factors in the clinical application of circulating nucleic acids. Techniques that can increase the sensitivity by deeper sequencing also increase the price of testing. Laveraging multiple biomarkers such as mutations, CNAs and epigenetic modifications can help to increase the sensitivity of cfDNA detection. But with conventional technologies it requires multiple library preparations increasing the time, costs and distorting the results.
+  To keep my skills sharp and my hands dirty I am currently building a modality-agnostic cfDNA detection tool based on raw Oxford Nanopore sequencing. This tool will be able to extract genome-wide genetic, epigenetic and fragmentomic information increasing detection sensitivity from a single sequencing run.
+
+  I am open for work on human, animal, plant and microbial omics projects. I do not require a working visa in the European Union.
+  
+  Do you want to grab a coffee and discuss science or your project? I am located in Amsterdam, The Netherlands.

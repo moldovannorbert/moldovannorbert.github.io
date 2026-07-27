@@ -155,6 +155,47 @@ a:hover {
   text-decoration: underline;
 }
 
+/* High-contrast support: keep layout/design intact by overriding palette variables only. */
+[data-contrast='high'] {
+  --muted: var(--ink);
+  --border: var(--ink);
+  /* Make the accent "soft" fill slightly more present. */
+  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted: var(--ink);
+    --border: var(--ink);
+    --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+  }
+}
+
+@media (forced-colors: active) {
+  :root {
+    /* Let the OS decide the actual palette, but map our vars to those system colors. */
+    --surface: Canvas;
+    --surface-band: Canvas;
+    --ink: CanvasText;
+    --muted: CanvasText;
+    --border: CanvasText;
+    --accent: LinkText;
+    --accent-hover: LinkText;
+    --accent-soft: transparent;
+  }
+
+  .btn--primary {
+    color: ButtonText;
+  }
+
+  /* Ensure we don't get low-contrast borders in forced colors. */
+  .btn,
+  .nav__toggle,
+  .skip-link {
+    border-color: var(--border);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

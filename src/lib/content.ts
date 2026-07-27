@@ -10,12 +10,6 @@ import {
   publicationsSchema,
   skillsSchema,
   workSchema,
-  type Bio,
-  type CollabGraph,
-  type Experience,
-  type PublicationIndexes,
-  type Publications,
-  type Skills,
   type Work,
 } from './schema';
 
@@ -42,19 +36,8 @@ function loadCollabGraph(): CollabGraph {
   return collabGraphSchema.parse(JSON.parse(raw));
 }
 
-let cache: {
-  bio: Bio;
-  skills: Skills;
-  experience: Experience;
-  works: Work[];
-  publications: Publications;
-  publicationIndexes: PublicationIndexes;
-  collabGraph: CollabGraph;
-} | null = null;
-
 export function loadContent() {
-  if (cache) return cache;
-  cache = {
+  return {
     bio: readYaml('bio.yaml', bioSchema),
     skills: readYaml('skills.yaml', skillsSchema),
     experience: readYaml('experience.yaml', experienceSchema),
@@ -63,7 +46,6 @@ export function loadContent() {
     publicationIndexes: readYaml('publications/meta.yaml', publicationIndexesSchema),
     collabGraph: loadCollabGraph(),
   };
-  return cache;
 }
 
 /** Redacted public corpus for future chat/RAG — no phone, DOB, or CV PDF text. */
@@ -80,8 +62,17 @@ export function buildCorpus() {
       location: bio.location,
       email: bio.email,
       links: bio.links,
+      now: bio.now.trim(),
     },
-    skills: skills.pillars,
+    skills: skills.pillars.map((p) => ({
+      title: p.title,
+      items: p.items.map(({ label, detail }) => ({
+        label,
+        detail: typeof detail === 'string'
+          ? detail
+          : detail.map((b) => (b.heading ? `${b.heading}: ${b.text}` : b.text)).join(' '),
+      })),
+    })),
     experience: experience.roles.map((r) => ({
       title: r.title,
       org: r.org,

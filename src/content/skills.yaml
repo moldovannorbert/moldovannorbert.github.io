@@ -1,16 +1,110 @@
 pillars:
-  - title: ML for multi-omics data
+  - title: Machine learning for multi-omics
     items:
-      - Deep learning and predictive models (PyTorch, scikit-learn)
-      - Embeddings, transformers, and diffusion models
-      - High-dimensional unstructured genomic and transcriptomic data
-  - title: Liquid biopsy and biomarkers
+      - label: High-dimensional DNA and RNA-seq data
+        detail:
+          - heading: What I build
+            text: I turn noisy NGS datasets into clean features models can learn from.
+          - heading: How
+            text: QC, normalization, batch-aware feature engineering, coverage tracks, and long-read signal.
+          - heading: Stack
+            text: Python, R, Bash.
+          - heading: Case study
+            text: Genome-wide cfDNA characterization of patients with resectable esophageal cancer (https://pathsocjournals.onlinelibrary.wiley.com/doi/abs/10.1002/path.6175)
+        image: high-dimensional-dna-rna-seq.jpg
+      - label: Deep learning and predictive models
+        detail:
+          - heading: What I build
+            text: Classification, survival, and recurrence models from high-dimensional omics features.
+          - heading: How
+            text: Nested cross-validation with calibrated probabilities, survival objectives, and Optuna-driven hyperparameter search.
+          - heading: Stack
+            text: PyTorch, scikit-learn, Optuna, deployment-ready tooling.
+          - heading: Case study
+            text: Multi-modal cfDNA patterns enhance cancer survival and recurrence analysis (https://www.cell.com/cell-reports-medicine/fulltext/S2666-3791(23)00566-9)
+        image: deep-learning-predictive-models.jpg
+      - label: Embeddings, transformers, and diffusion models
+        detail:
+          - heading: What I build
+            text: Representation learning and generative models for sequence and multi-modal genomic data.
+          - heading: How
+            text: Pretrain or fine-tune sequence encoders and generative backbones, then probe embeddings for downstream phenotype tasks.
+          - heading: Stack
+            text: PyTorch, Hugging Face, TensorFlow.
+          - heading: Case study
+            text: cfDNA dataset augmentation using diffusion models (https://www.nwo.nl/en/projects/ngf160923005)
+        image: embeddings-transformers-diffusion.jpg
+  - title: HPC pipelines
     items:
-      - cfDNA genomics, epigenomics, and fragmentomics for cancer detection and MRD
-      - Short- and long-read sequencing (Illumina, Oxford Nanopore, PacBio)
-      - DNA and RNA workflows including circRNA from liquid biopsies
-  - title: Pipelines and HPC
+      - label: Production-ready bioinformatics tooling
+        detail:
+          - heading: What I ship
+            text: Scripts and libraries labs can run, extend, and trust in day-to-day analysis.
+          - heading: How
+            text: Agent-assisted development with typed interfaces, tests, and clear CLIs so analyses stay auditable under change.
+          - heading: Languages
+            text: Python, R, Bash; agentic coding.
+          - heading: Figures
+            text: Publication-ready plotting with ggplot2, ggsci, seaborn, and matplotlib.
+          - heading: Case study
+            text: FrEIA — Fragment End Integrated Analysis pipeline (https://github.com/mouliere-lab/FrEIA)
+        image: production-bioinformatics-tooling.jpg
+      - label: Reproducible workflow orchestration
+        detail:
+          - heading: What I build
+            text: Scalable pipeline DAGs with locked environments that reproduce across machines.
+          - heading: How
+            text: Pin environments, declare rule graphs, and checkpoint intermediates so reruns are deterministic and reviewable.
+          - heading: Orchestration
+            text: Snakemake, Mamba/Conda, Git.
+          - heading: Case study
+            text: Comparison of cell-free and small extracellular vesicle derived DNA in plasma of lung cancer patients (https://www.cell.com/iscience/fulltext/S2589-0042(24)01967-9)
+        image: reproducible-workflow-orchestration.jpg
+      - label: Slurm HPC and accelerated compute
+        detail:
+          - heading: What I build
+            text: Cluster jobs that scale CPU and GPU work without reinventing the scheduler.
+          - heading: How
+            text: Array jobs, resource-aware GPU allocation, and multi-threaded steps tuned to node topology and queue limits.
+          - heading: Runtime
+            text: Slurm, multi-threading, GPU acceleration.
+          - heading: Case study
+            text: Early outcome prediction in Large B-Cell Lymphoma (https://www.medrxiv.org/content/10.64898/2026.05.29.26353426v1)
+        image: slurm-hpc-accelerated-compute.jpg
+  - title: Biomarker discovery
     items:
-      - Python, R, and Bash for production bioinformatics tooling
-      - Snakemake and Mamba/Conda for scalable, reproducible pipelines
-      - Slurm HPC workflows, multi-threading and GPU acceleration
+      - label: cfDNA genomics, epigenomics, and fragmentomics
+        detail:
+          - heading: What I deliver
+            text: Multi-omic liquid biopsy signals for detection, monitoring, and MRD.
+          - heading: How
+            text: Derive fragment-end, length, methylation, and CNV features from plasma WGS/WGBS and train models against clinical endpoints.
+          - heading: Readouts
+            text: Fragmentomics, methylation, copy-number and mutation features from plasma cfDNA.
+          - heading: Case study
+            text: The effect of preanalytical variables on cfDNA fragmentation (https://academic.oup.com/clinchem/article-abstract/68/6/803/6549200)
+        image: cfdna-genomics-epigenomics-fragmentomics.jpg
+      - label: Short- and long-read sequencing analysis
+        detail:
+          - heading: What I build
+            text: Platform-aware workflows that combine short-read depth with long-read structure.
+          - heading: How
+            text: Hybrid pipelines that pair Illumina depth for calling with ONT/PacBio span for isoforms, SVs, and haplotype context.
+          - heading: Platforms
+            text: Illumina, Oxford Nanopore Technologies, PacBio.
+          - heading: Case studies
+            text: >-
+              Real-time analysis of cfDNA from plasma and urine (https://link.springer.com/article/10.15252/emmm.202217282)
+              Multi-platform integration reveals novel transcriptome of a virus (https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2017.02708/full)
+        image: short-long-read-sequencing.jpg
+      - label: DNA, RNA from liquid biopsies and beyond
+        detail:
+          - heading: What I build
+            text: End-to-end DNA and RNA processing pipelines.
+          - heading: How
+            text: From demultiplexing through alignment, quantification, and differential analysis to ranked biomarker candidates.
+          - heading: Focus
+            text: Translational methods that move from raw reads to biomarker candidates.
+          - heading: Case studies
+            text: The effect of preanalytical variables on cfDNA fragmentation (https://academic.oup.com/clinchem/article-abstract/68/6/803/6549200)
+        image: dna-rna-liquid-biopsies.jpg

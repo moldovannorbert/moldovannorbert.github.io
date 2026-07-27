@@ -4,7 +4,7 @@ subtitle: Fragment End Integrated Analysis
 year: 2024
 venueLabel: Cell Reports Medicine
 problem: >
-  Shallow WGS is afordable but lacks the depth needed for conventional mutation-based ctDNA detection.
+  Shallow WGS is affordable but lacks the depth needed for conventional mutation-based ctDNA detection.
 method: >
   Snakemake pipeline extracting cfDNA fragment-end sequence proportions and diversity, integrating copy-number aberration, fragment size, and end-sequence features into a FrEIA score with machine-learning classification for cancer detection.
 impact: >

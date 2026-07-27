@@ -14,7 +14,7 @@ featured:
       into a FrEIA score with machine-learning classification for cancer detection.
     impact: >
       Open-source toolkit used in multi-modal cfDNA genomic and fragmentomic analyses
-      for cancer survival and recurrence (PMID 38128532).
+      for cancer survival and recurrence.
     tags:
       - cfDNA
       - fragmentomics
@@ -38,7 +38,7 @@ featured:
       and fragmentome from plasma and urine cfDNA using Oxford Nanopore and Illumina
       sequencing data.
     impact: >
-      Pipeline and study published in EMBO Molecular Medicine (PMID 37942753),
+      Pipeline and study published in EMBO Molecular Medicine,
       demonstrating long-read fragmentomics for liquid biopsy.
     tags:
       - cfDNA

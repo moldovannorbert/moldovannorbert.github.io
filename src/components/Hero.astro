@@ -11,25 +11,22 @@ const { bio } = Astro.props;
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-name">
-  <div class="hero__ribbon" aria-hidden="true">
-    <div class="hero__ribbon-band"></div>
-  </div>
   <div class="wrap hero__content">
     <div class="hero__intro">
       <div class="hero__portrait">
         <Image
           class="hero__photo"
           src={portrait}
-          alt=""
+          alt="Norbert Moldován"
           width={320}
           height={320}
           densities={[1.5, 2]}
           format="webp"
           quality={82}
         />
-        <a class="hero__avail" href="#contact">
+        <a class="hero__avail" href="#now">
           <span class="hero__avail-dot" aria-hidden="true"></span>
-          Open for work
+          <span class="hero__avail-text">Open for work</span>
         </a>
       </div>
       <div class="hero__copy">
@@ -40,6 +37,7 @@ const { bio } = Astro.props;
           <a class="btn btn--primary" href={bio.cv.primary.href} download target="_blank" rel="noopener noreferrer">
             {bio.cv.primary.label}
           </a>
+          <a class="btn btn--primary" href={`mailto:${bio.email}`}>{bio.email}</a>
           {
             bio.cv.secondary && (
               <a class="link-quiet hero__cv-alt" href={bio.cv.secondary.href} download target="_blank" rel="noopener noreferrer">
@@ -92,26 +90,32 @@ const { bio } = Astro.props;
             </svg>
           </a>
         </li>
-        <li>
-          <a href="#contact" aria-label="Contact" title="Contact">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
-              ></path>
-            </svg>
-          </a>
-        </li>
       </ul>
       <dl class="hero__metrics">
         <div>
-          <dt>Citations</dt>
+          <dt>
+            Citations
+            <span class="hero__metric-hint" tabindex="0">
+              <span class="hero__metric-q" aria-hidden="true">?</span>
+              <span class="hero__metric-tip" role="tooltip"
+                >Times publications have been cited by other scholarly works (Google Scholar).</span
+              >
+            </span>
+          </dt>
           <dd>
             <a href={bio.links.scholar} target="_blank" rel="noopener noreferrer">{bio.metrics.citations.toLocaleString('en-US')}</a>
           </dd>
         </div>
         <div>
-          <dt>h-index</dt>
+          <dt>
+            h-index
+            <span class="hero__metric-hint" tabindex="0">
+              <span class="hero__metric-q" aria-hidden="true">?</span>
+              <span class="hero__metric-tip" role="tooltip"
+                >h papers each cited at least h times (Google Scholar).</span
+              >
+            </span>
+          </dt>
           <dd>
             <a href={bio.links.scholar} target="_blank" rel="noopener noreferrer">{bio.metrics.hIndex}</a>
           </dd>
@@ -138,79 +142,6 @@ const { bio } = Astro.props;
   .hero__content {
     position: relative;
     z-index: 1;
-  }
-
-  .hero__ribbon {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    overflow: hidden;
-  }
-
-  .hero__ribbon-band {
-    position: absolute;
-    left: -30%;
-    top: 22%;
-    width: 160%;
-    height: clamp(10rem, 28vw, 16rem);
-    background: linear-gradient(
-      100deg,
-      transparent 0%,
-      #c5ebe2 16%,
-      #cfdfff 34%,
-      #f7dccf 52%,
-      #e4efc8 70%,
-      #d4e8f5 84%,
-      transparent 100%
-    );
-    filter: blur(28px);
-    opacity: 0;
-    transform: rotate(-14deg) translate3d(-14%, 0, 0);
-    animation: ribbon-drift 2.6s var(--ease) 80ms both;
-  }
-
-  .hero__ribbon-band::after {
-    content: '';
-    position: absolute;
-    inset: 28% -5%;
-    background: linear-gradient(
-      100deg,
-      transparent 0%,
-      #a8ddd2 20%,
-      #b8c8f0 40%,
-      #f0cbb8 60%,
-      #cfe5a8 80%,
-      transparent 100%
-    );
-    filter: blur(18px);
-    opacity: 0.85;
-  }
-
-  @keyframes ribbon-drift {
-    from {
-      opacity: 0;
-      transform: rotate(-14deg) translate3d(-20%, 6%, 0);
-    }
-    40% {
-      opacity: 0.75;
-    }
-    to {
-      opacity: 0.55;
-      transform: rotate(-14deg) translate3d(0, 0, 0);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__ribbon-band {
-      animation: none;
-      opacity: 0.5;
-      transform: rotate(-14deg);
-    }
-
-    .hero__avail-dot {
-      animation: none;
-    }
   }
 
   .hero__intro {
@@ -244,7 +175,7 @@ const { bio } = Astro.props;
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: #2a9b78;
+    color: var(--accent);
     font-family: var(--font-mono);
     font-size: clamp(0.62rem, 1.5vw, 0.72rem);
     font-weight: 500;
@@ -260,14 +191,88 @@ const { bio } = Astro.props;
     color: var(--accent);
   }
 
+  .hero__avail:hover .hero__avail-text {
+    -webkit-text-fill-color: var(--accent);
+  }
+
+  .hero__avail:hover .hero__avail-dot {
+    background: var(--accent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+
+  /*
+   * Load shimmer (Siri/Google-style sweep): cool teal → slate → mint highlight,
+   * settling on the steady availability green. Professional, on-brand with --accent.
+   */
+  .hero__avail-text {
+    background-image: linear-gradient(
+      105deg,
+      #0d6e6e 0%,
+      #1a6f7c 16%,
+      #2f7f9a 32%,
+      #5eb8a8 46%,
+      #b8ebe0 52%,
+      #5eb8a8 58%,
+      #2a9b78 78%,
+      #2a9b78 100%
+    );
+    background-size: 240% 100%;
+    background-position: 100% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation:
+      avail-shimmer-sweep 1.667s var(--ease) 3,
+      avail-shimmer-settle 0.01s linear 5s forwards;
+  }
+
   .hero__avail-dot {
     width: 0.4rem;
     height: 0.4rem;
     flex-shrink: 0;
     border-radius: 50%;
-    background: currentColor;
-    box-shadow: 0 0 8px color-mix(in srgb, currentColor 55%, transparent);
-    animation: avail-pulse 2.2s var(--ease) infinite;
+    background: #0d6e6e;
+    box-shadow: 0 0 8px color-mix(in srgb, #0d6e6e 55%, transparent);
+    animation:
+      avail-shimmer-dot 1.667s var(--ease) 3 forwards,
+      avail-pulse 2.2s var(--ease) 5s infinite;
+  }
+
+  @keyframes avail-shimmer-sweep {
+    from {
+      background-position: 100% 50%;
+      -webkit-text-fill-color: transparent;
+    }
+    to {
+      background-position: 0% 50%;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  @keyframes avail-shimmer-settle {
+    to {
+      -webkit-text-fill-color: #2a9b78;
+    }
+  }
+
+  @keyframes avail-shimmer-dot {
+    0% {
+      background: #0d6e6e;
+      box-shadow: 0 0 8px color-mix(in srgb, #0d6e6e 55%, transparent);
+    }
+    28% {
+      background: #2f7f9a;
+      box-shadow: 0 0 8px color-mix(in srgb, #2f7f9a 55%, transparent);
+    }
+    52% {
+      background: #5eb8a8;
+      box-shadow: 0 0 10px color-mix(in srgb, #5eb8a8 60%, transparent);
+    }
+    100% {
+      background: #2a9b78;
+      box-shadow: 0 0 8px color-mix(in srgb, #2a9b78 55%, transparent);
+    }
   }
 
   @keyframes avail-pulse {
@@ -279,6 +284,21 @@ const { bio } = Astro.props;
     50% {
       opacity: 0.45;
       transform: scale(0.85);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__avail-text {
+      animation: none;
+      background: none;
+      color: var(--accent);
+      -webkit-text-fill-color: var(--accent);
+    }
+
+    .hero__avail-dot {
+      animation: none;
+      background: var(--accent);
+      box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 55%, transparent);
     }
   }
 
@@ -379,17 +399,100 @@ const { bio } = Astro.props;
   .hero__metrics div {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: 0.15rem;
   }
 
   .hero__metrics dt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     margin: 0;
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+
+  .hero__metric-hint {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    cursor: help;
+  }
+
+  .hero__metric-q {
+    display: inline-grid;
+    place-items: center;
+    width: 0.95rem;
+    height: 0.95rem;
+    border: 1px solid color-mix(in srgb, var(--muted) 55%, transparent);
+    border-radius: 50%;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: none;
+    color: var(--muted);
+    transition:
+      color 160ms var(--ease),
+      border-color 160ms var(--ease),
+      background 160ms var(--ease);
+  }
+
+  .hero__metric-hint:hover .hero__metric-q,
+  .hero__metric-hint:focus .hero__metric-q,
+  .hero__metric-hint:focus-visible .hero__metric-q {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .hero__metric-hint:focus {
+    outline: none;
+  }
+
+  .hero__metric-hint:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+
+  .hero__metric-tip {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.45rem);
+    z-index: 5;
+    width: max-content;
+    max-width: 14rem;
+    padding: 0.45rem 0.55rem;
+    border-radius: 0.45rem;
+    background: var(--ink);
+    color: var(--surface);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    line-height: 1.35;
+    text-transform: none;
+    text-align: left;
+    box-shadow: 0 6px 18px rgba(15, 23, 32, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(0.15rem);
+    transition:
+      opacity 160ms var(--ease),
+      transform 160ms var(--ease),
+      visibility 160ms var(--ease);
+  }
+
+  .hero__metric-hint:hover .hero__metric-tip,
+  .hero__metric-hint:focus .hero__metric-tip,
+  .hero__metric-hint:focus-within .hero__metric-tip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .hero__metrics dd {
@@ -400,6 +503,7 @@ const { bio } = Astro.props;
     line-height: 1;
     letter-spacing: -0.02em;
     color: var(--ink);
+    text-align: left;
   }
 
   .hero__metrics a {

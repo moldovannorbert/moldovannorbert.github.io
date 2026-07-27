@@ -10,10 +10,10 @@ interface Props {
 const { graph, indexes, highlights } = Astro.props;
 
 const techniqueOrder = [
-  'longread_rna',
   'cfdna_fragmentomics',
-  'cfdna_genomics_epigenomics',
   'longread_cfdna',
+  'cfdna_genomics_epigenomics',
+  'longread_rna',
   'other',
 ] as const satisfies readonly Technique[];
 
@@ -36,7 +36,7 @@ const techniqueCssVar: Record<Technique, string> = {
 const years = graph.papers.map((p) => p.year).filter((y): y is number => y != null);
 const yearMin = years.length ? Math.min(...years) : 2017;
 const yearMax = years.length ? Math.max(...years) : 2025;
-const yearTicks = Array.from({ length: yearMax - yearMin + 1 }, (_, i) => yearMin + i);
+const yearTicks = Array.from({ length: yearMax - yearMin + 1 }, (_, i) => yearMax - i);
 
 const byYear = new Map<number, typeof graph.papers>();
 for (const y of yearTicks) byYear.set(y, []);
@@ -101,11 +101,12 @@ const chartPapers = marks.map((m) => ({
   <div class="wrap">
     <h2 class="section__title" id="pubs-title">Publications</h2>
     <p class="section__lead">
-      A <span class="collab__count-total">{graph.counts.papers} paper</span> journey through NGS multi-omic data.
+      A {graph.counts.papers} paper journey in the world of NGS multi-omics.
     </p>
 
     <div class="pubs-layout">
       <div class="works pubs-highlights">
+        <h3 class="pubs-highlights__title">Selected publications</h3>
         {
           highlights.map((work) => (
             <article class="work">
@@ -116,14 +117,6 @@ const chartPapers = marks.map((m) => ({
                 <h3 class="work__title">{work.title.trim()}</h3>
               </header>
               <dl class="work__fields">
-                <div>
-                  <dt>Problem</dt>
-                  <dd class="prose">{work.problem.trim()}</dd>
-                </div>
-                <div>
-                  <dt>Method</dt>
-                  <dd class="prose">{work.method.trim()}</dd>
-                </div>
                 <div>
                   <dt>Impact</dt>
                   <dd class="prose">{work.impact.trim()}</dd>
@@ -200,16 +193,6 @@ const chartPapers = marks.map((m) => ({
               ))
             }
           </p>
-          <p class="collab__legend-note" aria-label="Authorship">
-            <span class="collab__mark-key">
-              <span class="collab__mark-sample collab__mark-sample--filled" aria-hidden="true" />
-              First author
-            </span>
-            <span class="collab__mark-key">
-              <span class="collab__mark-sample collab__mark-sample--hollow" aria-hidden="true" />
-              Co-author
-            </span>
-          </p>
         </div>
 
         <div class="collab__stage" data-collab-stage>
@@ -217,7 +200,7 @@ const chartPapers = marks.map((m) => ({
             class="collab__svg"
             viewBox={`0 0 ${W} ${H}`}
             role="img"
-            aria-label="Publication activity by year from past to present; filled tiles are first-author papers"
+            aria-label="Publication activity by year from present to past"
           >
             <line
               x1={padL - 6}
@@ -249,9 +232,7 @@ const chartPapers = marks.map((m) => ({
                       height={tile}
                       rx="2.7"
                       ry="3"
-                      fill={m.led ? m.color : 'var(--surface)'}
-                      stroke={m.color}
-                      stroke-width="2"
+                      fill={m.color}
                       style={`cursor: pointer; --col: ${yearIdx}; --row: ${paperIdx}`}
                     />
                   ))}
@@ -279,7 +260,6 @@ const chartPapers = marks.map((m) => ({
                     <span class="collab__list-meta">
                       {p.year ?? 'n.d.'}
                       {p.openAlexType === 'preprint' ? ' · Preprint' : ''}
-                      {p.led ? ' · First author' : ''}
                       {p.venue ? ` · ${p.venue}` : ''}
                     </span>
                     <a href={p.url} target="_blank" rel="noopener noreferrer">
@@ -302,15 +282,23 @@ const chartPapers = marks.map((m) => ({
   .pubs-layout {
     display: grid;
     gap: 2.5rem 2.75rem;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
     grid-template-areas:
-      'highlights viz'
-      'list viz';
+      'viz highlights'
+      'viz list';
     align-items: start;
   }
 
   .pubs-highlights {
     grid-area: highlights;
+  }
+
+  .pubs-highlights__title {
+    margin: 0 0 0.15rem;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 
   .pubs-viz {
@@ -327,8 +315,8 @@ const chartPapers = marks.map((m) => ({
     .pubs-layout {
       grid-template-columns: 1fr;
       grid-template-areas:
-        'highlights'
         'viz'
+        'highlights'
         'list';
     }
 
@@ -447,11 +435,6 @@ const chartPapers = marks.map((m) => ({
     color: var(--muted);
   }
 
-  .collab__count-total {
-    font-weight: 600;
-    color: var(--ink);
-  }
-
   .collab__count-item {
     display: inline-flex;
     align-items: center;
@@ -499,11 +482,20 @@ const chartPapers = marks.map((m) => ({
     transform: translateY(10px) scale(0.55);
     transform-box: fill-box;
     transform-origin: center;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .collab__stage.is-inview .collab__mark {
     animation: collab-tile-pop 480ms var(--ease) both;
     animation-delay: calc(var(--col, 0) * 70ms + var(--row, 0) * 28ms);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .collab__mark:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
 
   @keyframes collab-tile-pop {
@@ -549,37 +541,6 @@ const chartPapers = marks.map((m) => ({
     background: var(--surface);
     border: 1px solid var(--border);
     pointer-events: none;
-  }
-
-  .collab__legend-note {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 0;
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
-
-  .collab__mark-key {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .collab__mark-sample {
-    width: 0.675rem;
-    height: 0.675rem;
-    border-radius: 2.7px;
-    border: 2px solid var(--muted);
-    box-sizing: border-box;
-  }
-
-  .collab__mark-sample--filled {
-    background: var(--muted);
-  }
-
-  .collab__mark-sample--hollow {
-    background: var(--surface);
   }
 
   .collab__caption {
@@ -687,11 +648,17 @@ const chartPapers = marks.map((m) => ({
     const p = id ? byId.get(id) : null;
     if (!p) continue;
 
+    mark.tabIndex = 0;
+    mark.setAttribute('role', 'button');
+    mark.setAttribute(
+      'aria-label',
+      `${p.title} (${p.year}) · ${p.label}${p.venue ? ` · ${p.venue}` : ''}`,
+    );
+
     mark.addEventListener('pointerenter', (event) => {
-      const role = p.led ? 'First author' : 'Co-author';
       showTooltip(
         event,
-        `<strong>${p.title}</strong><br>${p.year} · ${role} · ${p.label}${p.venue ? ` · ${p.venue}` : ''}<br><span style="opacity:.7">Click to open DOI</span>`,
+        `<strong>${p.title}</strong><br>${p.year} · ${p.label}${p.venue ? ` · ${p.venue}` : ''}<br><span style="opacity:.7">Click to open DOI</span>`,
       );
     });
     mark.addEventListener('pointermove', (event) => {
@@ -699,6 +666,12 @@ const chartPapers = marks.map((m) => ({
     });
     mark.addEventListener('pointerleave', hideTooltip);
     mark.addEventListener('click', () => {
+      window.open(p.url, '_blank', 'noopener,noreferrer');
+    });
+
+    mark.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
       window.open(p.url, '_blank', 'noopener,noreferrer');
     });
   }
