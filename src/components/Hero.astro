@@ -123,6 +123,19 @@ const { bio } = Astro.props;
       </dl>
     </div>
   </div>
+  <a class="hero__scroll" href="#expertise" data-hero-scroll>
+    <span class="hero__scroll-label">Scroll to see more!</span>
+    <svg class="hero__scroll-arrow" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 10l6 6 6-6"
+      ></path>
+    </svg>
+  </a>
 </section>
 
 <style>
@@ -515,6 +528,57 @@ const { bio } = Astro.props;
     color: var(--accent);
   }
 
+  .hero__scroll {
+    position: absolute;
+    left: max(1rem, calc((100% - var(--max)) / 2 + 1rem));
+    bottom: 1.35rem;
+    z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    animation: hero-scroll-nudge 2.4s var(--ease) infinite;
+    transition:
+      opacity 280ms var(--ease),
+      transform 280ms var(--ease),
+      color 160ms var(--ease);
+  }
+
+  .hero__scroll:hover {
+    color: var(--accent);
+  }
+
+  .hero__scroll.is-away {
+    opacity: 0 !important;
+    pointer-events: none;
+    animation: none;
+    transform: translateY(0.4rem);
+  }
+
+  .hero__scroll-arrow {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  @keyframes hero-scroll-nudge {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.72;
+    }
+    50% {
+      transform: translateY(0.35rem);
+      opacity: 1;
+    }
+  }
+
   @keyframes rise {
     from {
       opacity: 0;
@@ -536,5 +600,39 @@ const { bio } = Astro.props;
     .hero__portrait {
       width: clamp(8rem, 42vw, 11rem);
     }
+
+    .hero__scroll {
+      left: 1rem;
+      bottom: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__scroll {
+      animation: none;
+      opacity: 0.85;
+    }
   }
 </style>
+
+<script>
+  const hero = document.getElementById('top');
+  const cue = document.querySelector('[data-hero-scroll]');
+  if (hero instanceof HTMLElement && cue instanceof HTMLElement) {
+    const setAway = (away) => {
+      cue.classList.toggle('is-away', away);
+      cue.setAttribute('aria-hidden', away ? 'true' : 'false');
+      if (away) cue.setAttribute('tabindex', '-1');
+      else cue.removeAttribute('tabindex');
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        // Hide once most of the hero has left the viewport; show when back on hero.
+        setAway(!entry.isIntersecting || entry.intersectionRatio < 0.55);
+      },
+      { threshold: [0, 0.35, 0.55, 0.75, 1] },
+    );
+    io.observe(hero);
+  }
+</script>

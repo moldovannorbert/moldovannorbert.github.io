@@ -7,12 +7,25 @@ interface Props {
 
 const { bio } = Astro.props;
 const year = new Date().getFullYear();
+const nowParts = bio.now.trim().split(/(Dutch)/g);
 ---
 
 <footer class="section now" id="now" aria-labelledby="now-title">
   <div class="wrap">
     <h2 class="section__title" id="now-title">Now</h2>
-    <p class="section__lead now__body">{bio.now.trim()}</p>
+    <p class="section__lead now__body">
+      {
+        nowParts.map((part) =>
+          part === 'Dutch' ? (
+            <>
+              Dutch <span aria-hidden="true">🇳🇱</span>
+            </>
+          ) : (
+            part
+          ),
+        )
+      }
+    </p>
     <div class="now__foot">
       <p class="now__meta">
         © {year} {bio.name} · {bio.location} · Built with Astro ·
