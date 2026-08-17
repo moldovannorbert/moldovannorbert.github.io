@@ -5,7 +5,9 @@
   "openAlexFilter": "authorships.author.orcid:0000-0003-4138-586X,type:article|data-paper|preprint,from_publication_date:2017-01-01",
   "egoNameMatchers": ["Moldován", "Moldovan", "Norbert Moldován", "Norbert Moldovan"],
   "excludeDois": [
-    "10.5167/uzh-292055"
+    "10.5167/uzh-292055",
+    "10.6084/m9.figshare.33149118",
+    "10.6084/m9.figshare.33149118.v1"
   ],
   "excludeWorkIds": ["W2894732398"],
   "techniqueByWorkId": {},
@@ -14,11 +16,14 @@
     "10.64898/2026.05.29.26353426": "cfdna_fragmentomics",
     "10.1101/gr.279144.124": "longread_cfdna",
     "10.1101/2024.02.16.580684": "longread_cfdna",
+    "10.64898/2026.08.14.744779": "longread_cfdna",
     "10.1016/j.isci.2024.110742": "cfdna_genomics_epigenomics",
     "10.1101/2022.07.22.501161": "cfdna_genomics_epigenomics",
     "10.1016/j.ijrobp.2024.10.010": "cfdna_genomics_epigenomics",
     "10.1038/s43856-024-00517-8": "cfdna_genomics_epigenomics",
     "10.1002/path.6175": "cfdna_genomics_epigenomics",
+    "10.1200/po-25-00882": "cfdna_genomics_epigenomics",
+    "10.1186/s13073-026-01739-2": "cfdna_genomics_epigenomics",
     "10.1016/j.xcrm.2023.101349": "cfdna_fragmentomics",
     "10.15252/emmm.202217282": "longread_cfdna",
     "10.1186/s13059-023-03074-w": "cfdna_genomics_epigenomics",
@@ -64,7 +69,7 @@
     "longread_rna": "Multi-modal RNA-seq",
     "cfdna_fragmentomics": "cfDNA fragmentomics",
     "cfdna_genomics_epigenomics": "cfDNA genomics & epigenomics",
-    "longread_cfdna": "Long-read cfDNA",
+    "longread_cfdna": "Long-read cfDNA & cfRNA",
     "other": "Other"
   }
 }

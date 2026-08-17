@@ -64,6 +64,15 @@ function flattenSkillDetail(detail) {
     .join(' ');
 }
 
+const otherRoleSchema = z.object({
+  title: z.string().min(1),
+  org: z.string().min(1),
+  dept: z.string().optional(),
+  location: z.string().min(1),
+  start: z.string().min(1),
+  end: z.string().min(1),
+});
+
 const experienceSchema = z.object({
   roles: z.array(
     z.object({
@@ -77,6 +86,7 @@ const experienceSchema = z.object({
       summary: z.string().min(1),
     }),
   ),
+  other: z.array(otherRoleSchema).default([]),
   education: z.array(
     z.object({
       degree: z.string().min(1),
@@ -184,6 +194,7 @@ const corpus = {
     end: r.end,
     summary: r.summary.trim(),
   })),
+  otherExperience: experience.other,
   education: experience.education,
   works: works.map((w) => ({
     title: w.title,

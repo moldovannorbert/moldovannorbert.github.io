@@ -16,6 +16,7 @@ function formatRange(start: string, end: string) {
     }
     return s;
   };
+  if (start === end) return fmt(start);
   return `${fmt(start)} – ${fmt(end)}`;
 }
 ---
@@ -51,6 +52,44 @@ function formatRange(start: string, end: string) {
               )}
               <p class="rail__summary">{role.summary.trim()}</p>
             </article>
+          </li>
+        ))
+      }
+
+      {
+        experience.other.length > 0 && (
+          <li class="rail__break">
+            <div class="rail__date"></div>
+            <div class="rail__node rail__node--label">
+              <button
+                type="button"
+                class="rail__edu-tag other__toggle"
+                aria-expanded="false"
+                data-other-toggle
+              >
+                Other work experiences
+              </button>
+            </div>
+            <div></div>
+          </li>
+        )
+      }
+
+      {
+        experience.other.map((role) => (
+          <li class="rail__item rail__item--other" data-rail-item data-other-item inert aria-hidden="true">
+            <div class="rail__fold">
+              <div class="rail__fold-inner">
+                <div class="rail__date">{formatRange(role.start, role.end)}</div>
+                <div class="rail__node" aria-hidden="true" />
+                <article class="rail__card">
+                  <h3 class="rail__title">{role.title}</h3>
+                  <p class="rail__place">
+                    {[role.org, role.dept, role.location].filter(Boolean).join(' · ')}
+                  </p>
+                </article>
+              </div>
+            </div>
           </li>
         ))
       }
@@ -251,10 +290,76 @@ function formatRange(start: string, end: string) {
     margin-bottom: 0;
   }
 
+  .other__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .other__toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .other__toggle::after {
+    content: '';
+    width: 0.28rem;
+    height: 0.28rem;
+    margin-top: -0.12rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 200ms var(--ease);
+  }
+
+  .rail.is-other-open .other__toggle::after {
+    margin-top: 0.08rem;
+    transform: rotate(225deg);
+  }
+
+  .rail__item.rail__item--other {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'fold';
+    padding: 0;
+  }
+
+  .rail__fold {
+    grid-area: fold;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 320ms var(--ease);
+  }
+
+  .rail.is-other-open .rail__fold {
+    grid-template-rows: 1fr;
+  }
+
+  .rail__fold-inner {
+    overflow: hidden;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: var(--rail-date) var(--rail-node) minmax(0, 1fr);
+    grid-template-areas: 'date node card';
+    column-gap: var(--rail-gap);
+    padding: 0;
+  }
+
+  .rail.is-other-open .rail__fold-inner {
+    padding: 0.85rem 0;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .rail__card {
       opacity: 1;
       transform: none;
+      transition: none;
+    }
+
+    .other__toggle::after,
+    .rail__fold,
+    .rail.is-other-open .rail__fold-inner {
       transition: none;
     }
   }
@@ -270,6 +375,19 @@ function formatRange(start: string, end: string) {
     }
 
     .rail__item {
+      grid-template-columns: var(--rail-node) minmax(0, 1fr);
+      grid-template-areas:
+        'node date'
+        'node card';
+      row-gap: 0.35rem;
+    }
+
+    .rail__item.rail__item--other {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'fold';
+    }
+
+    .rail__item--other .rail__fold-inner {
       grid-template-columns: var(--rail-node) minmax(0, 1fr);
       grid-template-areas:
         'node date'
@@ -305,7 +423,8 @@ function formatRange(start: string, end: string) {
 <script>
   const root = document.querySelector('[data-rail]');
   if (root) {
-    const items = [...root.querySelectorAll('[data-rail-item]')];
+    const items = [...root.querySelectorAll('[data-rail-item]:not([data-other-item])')];
+    const otherItems = [...root.querySelectorAll('[data-other-item]')];
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (reduceMotion) {
@@ -323,5 +442,17 @@ function formatRange(start: string, end: string) {
       );
       items.forEach((el) => io.observe(el));
     }
+
+    const otherToggle = root.querySelector('[data-other-toggle]');
+    otherToggle?.addEventListener('click', () => {
+      const open = otherToggle.getAttribute('aria-expanded') !== 'true';
+      otherToggle.setAttribute('aria-expanded', String(open));
+      root.classList.toggle('is-other-open', open);
+      otherItems.forEach((el) => {
+        el.toggleAttribute('inert', !open);
+        el.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (open) el.classList.add('is-in');
+      });
+    });
   }
 </script>

@@ -57,6 +57,15 @@ export const skillsSchema = z.object({
     .length(3),
 });
 
+const otherRoleSchema = z.object({
+  title: z.string().min(1),
+  org: z.string().min(1),
+  dept: z.string().optional(),
+  location: z.string().min(1),
+  start: z.string().min(1),
+  end: z.string().min(1),
+});
+
 export const experienceSchema = z.object({
   roles: z.array(
     z.object({
@@ -70,6 +79,7 @@ export const experienceSchema = z.object({
       summary: z.string().min(1),
     }),
   ),
+  other: z.array(otherRoleSchema).default([]),
   education: z.array(
     z.object({
       degree: z.string().min(1),

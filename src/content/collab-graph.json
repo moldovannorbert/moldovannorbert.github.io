@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T12:20:32.811Z",
+  "generatedAt": "2026-08-17T15:30:35.882Z",
   "source": {
     "provider": "openalex",
     "orcid": "0000-0003-4138-586X",
@@ -7,12 +7,12 @@
     "minYear": 2017
   },
   "counts": {
-    "papers": 47,
+    "papers": 50,
     "byTechnique": {
       "longread_rna": 33,
       "cfdna_fragmentomics": 6,
-      "cfdna_genomics_epigenomics": 6,
-      "longread_cfdna": 2,
+      "cfdna_genomics_epigenomics": 8,
+      "longread_cfdna": 3,
       "other": 0
     }
   },
@@ -20,7 +20,7 @@
     "longread_rna": "Multi-modal RNA-seq",
     "cfdna_fragmentomics": "cfDNA fragmentomics",
     "cfdna_genomics_epigenomics": "cfDNA genomics & epigenomics",
-    "longread_cfdna": "Long-read cfDNA",
+    "longread_cfdna": "Long-read cfDNA & cfRNA",
     "other": "Other"
   },
   "papers": [
@@ -34,6 +34,45 @@
       "doi": "10.64898/2026.05.29.26353426",
       "technique": "cfdna_fragmentomics",
       "firstAuthor": "Steven Wang",
+      "led": false,
+      "openAlexType": "preprint"
+    },
+    {
+      "id": "W7202259934",
+      "type": "paper",
+      "title": "Integrated Methylation and Copy Number Analysis for Noninvasive Bladder Cancer Detection in Urine",
+      "year": 2026,
+      "venue": "JCO Precision Oncology",
+      "url": "https://doi.org/10.1200/po-25-00882",
+      "doi": "10.1200/po-25-00882",
+      "technique": "cfdna_genomics_epigenomics",
+      "firstAuthor": "Irene Beijert",
+      "led": false,
+      "openAlexType": "article"
+    },
+    {
+      "id": "W7171935558",
+      "type": "paper",
+      "title": "Multifeature sequencing-based liquid biopsy for cancer diagnosis and monitoring",
+      "year": 2026,
+      "venue": "Genome Medicine",
+      "url": "https://doi.org/10.1186/s13073-026-01739-2",
+      "doi": "10.1186/s13073-026-01739-2",
+      "technique": "cfdna_genomics_epigenomics",
+      "firstAuthor": "Mariano A. Molina",
+      "led": false,
+      "openAlexType": "article"
+    },
+    {
+      "id": "W7203537344",
+      "type": "paper",
+      "title": "Ouro-seq: Improved Recovery of Full-Length circRNAs from Samples with Limited RNA Content",
+      "year": 2026,
+      "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+      "url": "https://doi.org/10.64898/2026.08.14.744779",
+      "doi": "10.64898/2026.08.14.744779",
+      "technique": "longread_cfdna",
+      "firstAuthor": "Birgit M. M. Wever",
       "led": false,
       "openAlexType": "preprint"
     },
@@ -406,7 +445,7 @@
       "type": "paper",
       "title": "Transcriptome Profiling of Epstein-Barr Virus Using Nanopore Sequencing",
       "year": 2020,
-      "venue": "Research Square (Research Square)",
+      "venue": "",
       "url": "https://doi.org/10.21203/rs.3.rs-109629/v1",
       "doi": "10.21203/rs.3.rs-109629/v1",
       "technique": "longread_rna",

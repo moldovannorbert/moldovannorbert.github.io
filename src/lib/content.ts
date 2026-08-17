@@ -82,6 +82,7 @@ export function buildCorpus() {
       end: r.end,
       summary: r.summary.trim(),
     })),
+    otherExperience: experience.other,
     education: experience.education,
     works: works.map((w) => ({
       title: w.title,

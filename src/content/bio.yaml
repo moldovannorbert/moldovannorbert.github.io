@@ -20,6 +20,8 @@ cv:
     label: Download CV
     href: /cv-bioinformatician.pdf
 now: |
+  Currently I am working part time in a short-term project at the Department of Pathology of AUMC to implement a cfDNA methylation-based tissue of origin classifier.
+
   Low tumor content is one of the limiting factors in the clinical application of circulating nucleic acids. Techniques that can increase the sensitivity by deeper sequencing also increase the price of testing. Laveraging multiple biomarkers such as mutations, CNAs and epigenetic modifications can help to increase the sensitivity of cfDNA detection. But with conventional technologies it requires multiple library preparations increasing the time, costs and distorting the results.
   To keep my skills sharp and my hands dirty I am currently building a modality-agnostic cfDNA detection tool based on raw Oxford Nanopore sequencing. This tool will be able to extract genome-wide genetic, epigenetic and fragmentomic information increasing detection sensitivity from a single sequencing run.
   

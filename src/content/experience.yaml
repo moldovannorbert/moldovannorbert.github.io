@@ -1,4 +1,14 @@
 roles:
+  - title: Bioinformatician (Part time)
+    org: Amsterdam University Medical Center
+    url: https://www.amsterdamumc.org/en
+    dept: Cancer Center Amsterdam, ADORE, Department of Pathology
+    location: Amsterdam, NL
+    start: "2026-08"
+    end: "2027-02"
+    summary: >
+      Implementing cfDNA tissue-deconvolution pipeline from methylation
+      sequencing data.
   - title: Bioinformatician
     org: Erasmus University Medical Center
     url: https://www.erasmusmc.nl/en/
@@ -36,6 +46,33 @@ roles:
     summary: >
       Advised a non-bioinformatics team on software for a commercial
       metagenomic sequencing analysis tool.
+other:
+  - title: Research assistant
+    org: University of Szeged
+    dept: Department of Medical Biology
+    location: Szeged, HU
+    start: "2016"
+    end: "2016"
+  - title: Encounter group trainer
+    org: Nagyító Egyesület
+    location: HU
+    start: "2013"
+    end: "2016"
+  - title: Secondary education teacher
+    org: Lakatos Menyhért Általános Iskola és Gimnázium
+    location: Budapest, HU
+    start: "2013"
+    end: "2015"
+  - title: Secondary education teacher
+    org: Jósika Miklós Elméleti Líceum
+    location: Turda, RO
+    start: "2011"
+    end: "2013"
+  - title: Encounter group trainer
+    org: Kolozsvári Nagyító Egyesület (Alteredu)
+    location: Cluj-Napoca, RO
+    start: "2008"
+    end: "2013"
 education:
   - degree: PhD in Medical Genetics
     org: University of Szeged, Faculty of General Medicine
