@@ -145,6 +145,17 @@ a:hover {
   color: #fff;
 }
 
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--ink);
+  color: var(--accent);
+}
+
 .link-quiet {
   color: var(--muted);
   text-decoration: none;
@@ -156,13 +167,6 @@ a:hover {
 }
 
 /* High-contrast support: keep layout/design intact by overriding palette variables only. */
-[data-contrast='high'] {
-  --muted: var(--ink);
-  --border: var(--ink);
-  /* Make the accent "soft" fill slightly more present. */
-  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
-}
-
 @media (prefers-contrast: more) {
   :root {
     --muted: var(--ink);

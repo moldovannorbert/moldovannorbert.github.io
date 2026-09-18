@@ -27,12 +27,8 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
       }
     </p>
     <div class="now__foot">
-      <p class="now__meta">
-        © {year} {bio.name} · {bio.location} · Built with Astro ·
-        <a href="/corpus.json" target="_blank" rel="noopener noreferrer">Public corpus</a>
-      </p>
       <div class="now__contact">
-        <span class="now__contact-label">Contact:</span>
+        <span class="now__contact-label">Contact</span>
         <ul class="now__links">
           <li>
             <a href={`mailto:${bio.email}`} aria-label="Email" title="Email">
@@ -86,6 +82,10 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
           </li>
         </ul>
       </div>
+      <p class="now__meta">
+        © {year} {bio.name} · {bio.location} · Built with Astro ·
+        <a href="/corpus.json" target="_blank" rel="noopener noreferrer">Public corpus</a>
+      </p>
     </div>
   </div>
 </footer>
@@ -111,12 +111,12 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
 
   .now__meta {
     margin: 0;
-    font-size: 0.88rem;
-    color: var(--muted);
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--muted) 78%, transparent);
   }
 
   .now__meta a {
-    color: var(--muted);
+    color: inherit;
   }
 
   .now__meta a:hover {
@@ -126,12 +126,13 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
   .now__contact {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    color: var(--muted);
+    gap: 0.55rem;
+    color: var(--ink);
   }
 
   .now__contact-label {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .now__links {
@@ -148,8 +149,8 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.65rem;
-    height: 1.65rem;
+    width: 2rem;
+    height: 2rem;
     color: var(--ink);
     text-decoration: none;
     border-radius: 3px;
@@ -162,8 +163,8 @@ const nowParts = bio.now.trim().split(/(Dutch)/g);
   }
 
   .now__links svg {
-    width: 0.92rem;
-    height: 0.92rem;
+    width: 1.1rem;
+    height: 1.1rem;
   }
 
   @media (max-width: 760px) {

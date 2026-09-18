@@ -34,10 +34,10 @@ const { bio } = Astro.props;
         <p class="hero__title-line">{bio.title} · {bio.tagline}</p>
         <p class="hero__pitch">{bio.pitch.trim()}</p>
         <div class="hero__cta">
-          <a class="btn btn--primary" href={bio.cv.primary.href} download target="_blank" rel="noopener noreferrer">
+          <a class="btn btn--primary" href={`mailto:${bio.email}`}>{bio.email}</a>
+          <a class="btn btn--ghost" href={bio.cv.primary.href} download target="_blank" rel="noopener noreferrer">
             {bio.cv.primary.label}
           </a>
-          <a class="btn btn--primary" href={`mailto:${bio.email}`}>{bio.email}</a>
           {
             bio.cv.secondary && (
               <a class="link-quiet hero__cv-alt" href={bio.cv.secondary.href} download target="_blank" rel="noopener noreferrer">
